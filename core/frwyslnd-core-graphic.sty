@@ -1,0 +1,62 @@
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-graphic.sty
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-core-graphic}[2026/06/16 The `graphic` module of the
+`core` package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-color`: The `color` module of the `core` package of the `frwyslnd`
+%% bundle.
+\RequirePackage{frwyslnd-core-color}
+
+%% `float`: Improved interface for floating objects.
+\RequirePackage{float}
+
+%% `graphicx`: Enhanced support for graphics.
+\RequirePackage{graphicx}
+
+%% `scalerel`: Constrained scaling and stretching of objects.
+\RequirePackage{scalerel}
+
+%% `scaletextbullet`: Resize the \textbullet without changing its vertical
+%% center.
+\RequirePackage{scaletextbullet}
+
+%% `tikz`: Create PostScript and PDF graphics in TeX.
+%% \RequirePackage{tikz} %% Loaded by `tcolorbox`
+
+%% `tcolorbox`: Colored boxes, for LaTeX examples and theorems, etc.
+% \RequirePackage{tcolorbox}
+
+%% `tikz-cd`: Create commutative diagrams with TikZ.
+% \RequirePackage{tikz-cd}
+
+% TIKZ LIBRARIES
+% \usetikzlibrary{calligraphy}
+% \usetikzlibrary{decorations.pathreplacing}
+% \usetikzlibrary{intersections}
+
+% CONFIGURATIONS
+%% `tikz-cd`
+% \tikzcdset{
+%   arrow style=tikz,
+%   diagrams={
+%     shorten=4pt,
+%     >={Straight Barb[round,scale=0.675,width=7pt]}
+%   },
+% }
+
+\endinput
