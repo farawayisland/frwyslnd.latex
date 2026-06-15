@@ -1,4 +1,4 @@
-% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core.sty
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-color.sty
 % ──────────────────────────────────────────────────────────────────────────────
 %
 % This file is part of the "`frwyslnd` bundle". The development version of
@@ -10,8 +10,8 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesPackage{frwyslnd-core}[2026/06/16 The `core` package of the `frwyslnd`
-bundle]
+\ProvidesPackage{frwyslnd-core-color}[2026/06/16 The `color` module of the
+`core` package of the `frwyslnd` bundle]
 
 % ENGINE
 %% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
@@ -19,7 +19,27 @@ bundle]
 \RequirePackage{iftex}
 \RequireLuaTeX
 
-% MODULES
-\RequirePackage{frwyslnd-core-color}
+% DEPENDENCIES
+%% `xcolor`: Driver-independent color extensions for LaTeX and pdfLaTeX.
+\RequirePackage[x11names,table]{xcolor}
+
+% BLUE COLORS
+\definecolor{CustomBlue01}{HTML}{000075}
+
+% BROWN COLORS
+
+% GRAYSCALE COLORS
+
+% GREEN COLORS
+
+% ORANGE COLORS
+
+% PINK COLORS
+
+% PURPLE COLORS
+
+% RED COLORS
+
+% YELLOW COLORS
 
 \endinput
