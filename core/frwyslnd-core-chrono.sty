@@ -1,4 +1,4 @@
-% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core.sty
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-chrono.sty
 % ──────────────────────────────────────────────────────────────────────────────
 %
 % This file is part of the "`frwyslnd` bundle". The development version of
@@ -10,21 +10,23 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesPackage{frwyslnd-core}[2026/06/16 The `core` package of the `frwyslnd`
-bundle]
+\ProvidesPackage{frwyslnd-core-chrono}[2026/06/16 The `chrono` module of the
+`core` package of the `frwyslnd` bundle]
 
 % ENGINE
 %% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
 %% to write checks for other TeX engines.
 
-% MODULES
-%% \RequirePackage{frwyslnd-core-color} %% Loaded by `frwyslnd-core-graphic`.
-%% \RequirePackage{frwyslnd-core-graphic} %% Loaded by `frwyslnd-core-caption`.
-%% \RequirePackage{frwyslnd-core-caption} %% Loaded by `frwyslnd-core-language`.
-%% \RequirePackage{frwyslnd-core-language} %% Loaded by `frwyslnd-core-font`.
-%% \RequirePackage{frwyslnd-core-font} %% Loaded by `frwyslnd-core-symbol`
-%% \RequirePackage{frwyslnd-core-symbol} %% Loaded by `frwyslnd-core-typography`
-%% \RequirePackage{frwyslnd-core-typography} %% Loaded by `frwyslnd-core-chrono`
-\RequirePackage{frwyslnd-core-chrono}
+% DEPENDENCIES
+%% `frwyslnd-typography`: The `typography` module of the `core` package of the
+%% `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core-typography}
+
+%% `datetime2`: Formats for dates, times and time zones.
+\RequirePackage{datetime2}
+
+% CONFIGURATIONS
+%% `datetime2`
+\DTMsetup{datesep=-}
 
 \endinput
