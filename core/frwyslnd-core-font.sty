@@ -1,0 +1,179 @@
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-font.sty
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-core-font}[2026/06/16 The `font` module of the `core`
+package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-language`: The `language` module of the `core` package of the
+%% `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core-language}
+
+%% `newpx`: Alternative uses of the PX fonts, with improved metrics.
+\usepackage[
+  largesc,
+  no-math,
+  otfmath,
+  theoremfont,
+  trueslanted,
+]{newpxtext}
+
+%% `amsmath`: AMS mathematical facilities for LaTeX.
+%% \RequirePackage{amsmath} %% Loaded by `mathtools`.
+
+%% `mathtools`: Mathematical tools to use with `amsmath`.
+\RequirePackage{mathtools}
+
+%% `unicode-math`: Unicode mathematics support for XeTeX and LuaTeX.
+\RequirePackage[
+  warnings-off={mathtools-colon,mathtools-overbracket},
+]{unicode-math} %% Loaded by `newpx` but not loaded by
+%% `newpxtext`.
+
+% SERIF TEXT FONTS
+%% TeX Gyre PagellaX.
+%%% Primary serif text font.
+%%% Source:
+%%% https://ctan.org/tex-archive/fonts/newpx/opentype
+%%% \setmainfont[%%% Loaded by `newpxtext`.
+%%%   Scale=1,
+%%% ]{TeX Gyre PagellaX}
+
+% SANS TEXT FONTS
+
+% MONOSPACED TEXT FONTS
+
+% MATH FONTS
+%% Stix Two Math
+%%% Source:
+%%% Secondary math font.
+%%% https://ctan.org/tex-archive/fonts/stix2-otf
+\setmathfont[
+  Scale=1,
+  version=stix-two-math,
+]{STIX Two Math}
+\setmathfont[
+  range={
+    \arabichad,
+    \arabicmaj,
+    \awint,
+    \bigbot,
+    \bigcap,
+    \bigcup,
+    \bigcupdot,
+    \biginterleave,
+    \bigodot,
+    \bigoplus,
+    \bigotimes,
+    \bigsqcap,
+    \bigsqcup,
+    \bigtalloblong,
+    \bigtimes,
+    \bigtop,
+    \bigtriangleleft,
+    \biguplus,
+    \bigvee,
+    \bigwedge,
+    \cirfnint,
+    \conjquant,
+    \coprod,
+    \disjquant,
+    \fint,
+    \fullouterjoin,
+    \iiiint,
+    \iiint,
+    \iint,
+    \int,
+    \intBar,
+    \intbar,
+    \intcap,
+    \intclockwise,
+    \intcup,
+    \intlarhk,
+    \intx,
+    \Join,
+    \leftouterjoin,
+    \lowint,
+    \modtwosum,
+    \npolint,
+    \oiiint,
+    \oiint,
+    \oint,
+    \ointctrclockwise,
+    \pointint,
+    \prod,
+    \rightouterjoin,
+    \rppolint,
+    \scpolint,
+    \sqint,
+    \sum,
+    \sumint,
+    \upint,
+    \varointclockwise,
+    \xbsol,
+    \xsol,
+    \zcmp,
+    \zpipe,
+    \zproject,
+    \Bbbsum,
+  },
+  Scale=1,
+]{STIX Two Math}
+
+%% Asana Math.
+%%% Primary math font, which must be loaded last.
+%%% Source:
+%%% https://ctan.org/tex-archive/fonts/Asana-Math
+\setmathfont[
+  Scale=1,
+  version=asana-math,
+]{Asana Math}
+\setmathfont[
+  range={bfcal,cal},
+  Scale=1,
+  Style=Alternate,
+]{Asana Math}
+
+%% Asana Math calligraphic R patch.
+%%% Source:
+%%% https://tex.stackexchange.com/a/538972
+\newcommand{\ToggleAsanaMathCalRPatch}{
+  \directlua{
+    % We want to stop the fontloader from discarding names it considers useless,
+    % so enable keepnames.
+    fonts.privateoffsets.keepnames = true
+    % That's not quite enough because the font is most likely already cached
+    % without the names, so disable the cache.
+    % WARNING: This affects all fonts you load in this document from here on,
+    % which will make your document significantly slower.
+    fonts.handlers.otf.cache.enabled = false
+    fonts.handlers.otf.addfeature {
+      name = "asana-salt-r",
+      type = "substitution",
+      data = {
+        [0x211B] = "uni211B.salt"
+      },
+    }
+  }
+  \setmathfont[
+    range={bfcal,cal},
+    RawFeature=asana-salt-r,
+    Scale=1,
+    Style=Alternate,
+  ]{Asana Math}
+}
+
+\endinput
