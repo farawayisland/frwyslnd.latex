@@ -1,4 +1,4 @@
-% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core.sty
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-list.sty
 % ──────────────────────────────────────────────────────────────────────────────
 %
 % This file is part of the "`frwyslnd` bundle". The development version of
@@ -10,22 +10,30 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesPackage{frwyslnd-core}[2026/06/16 The `core` package of the `frwyslnd`
-bundle]
+\ProvidesPackage{frwyslnd-core-list}[2026/06/16 The `list` module of the `core`
+package of the `frwyslnd` bundle]
 
 % ENGINE
 %% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
 %% to write checks for other TeX engines.
 
-% MODULES
-%% \RequirePackage{frwyslnd-core-color} %% Loaded by `frwyslnd-core-graphic`.
-%% \RequirePackage{frwyslnd-core-graphic} %% Loaded by `frwyslnd-core-caption`.
-%% \RequirePackage{frwyslnd-core-caption} %% Loaded by `frwyslnd-core-language`.
-%% \RequirePackage{frwyslnd-core-language} %% Loaded by `frwyslnd-core-font`.
-%% \RequirePackage{frwyslnd-core-font} %% Loaded by `frwyslnd-core-symbol`
-%% \RequirePackage{frwyslnd-core-symbol} %% Loaded by `frwyslnd-core-typography`
-%% \RequirePackage{frwyslnd-core-typography} %% Loaded by `frwyslnd-core-chrono`
-%% \RequirePackage{frwyslnd-core-chrono} %% Loaded by `frwyslnd-core-list`
-\RequirePackage{frwyslnd-core-list}
+% DEPENDENCIES
+%% `frwyslnd-chrono`: The `chrono` module of the `core` package of the
+%% `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core-chrono}
+
+%% `enumitem`: Control layout of itemize, enumerate, description.
+\RequirePackage{enumitem}
+
+% CONFIGURATIONS
+%% `enumitem` general list environments
+\setlist{
+  align=left,
+  before=\normalsize\normalfont,
+  font=\normalsize\normalfont,
+  itemindent=0pt,
+  labelsep=3.5pt,
+  nosep,
+}
 
 \endinput
