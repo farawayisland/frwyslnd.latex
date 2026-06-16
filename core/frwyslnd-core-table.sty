@@ -1,0 +1,35 @@
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-table.sty
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-core-table}[2026/06/16 The `table` module of the
+`core` package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-listing`: The `listing` module of the `core` package of the
+%% `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core-listing}
+
+%% `booktabs`: Publication quality tables in LaTeX.
+\RequirePackage{booktabs}
+
+%% `nicematrix`: Improve the typesetting of matrices and tabulars with PGF.
+\RequirePackage{nicematrix}
+
+% CONFIGURATIONS
+%% `nicematrix`
+\NiceMatrixOptions{cell-space-limits=3pt}
+
+\endinput
