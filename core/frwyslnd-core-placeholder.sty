@@ -1,0 +1,34 @@
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-placeholder.sty
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-core-placeholder}[2026/06/16 The `placeholder` module
+of the `core` package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-tool`: The `tool` module of the `core` package of the
+%% `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core-tool}
+
+%% `blindtext`: Producing 'blind' text for testing.
+\RequirePackage{blindtext}
+
+%% `kantlipsum`: Generate sentences in Kant's style.
+\RequirePackage{kantlipsum}
+
+%% `lipsum`: Easy access to the Lorem Ipsum and other dummy texts.
+\RequirePackage{lipsum}
+
+\endinput
