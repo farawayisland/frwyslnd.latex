@@ -1,0 +1,52 @@
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-listing.sty
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-core-listing}[2026/06/16 The `listing` module of the
+`core` package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-list`: The `list` module of the `core` package of the
+%% `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core-list}
+
+%% `minted`: Highlighted source code for LaTeX.
+\RequirePackage{minted}
+
+% CONFIGURATIONS
+%% `minted`
+%%% C
+\newmintedfile[inputc]{c}{
+  autogobble,
+  firstnumber=1,
+  fontfamily=tt,
+  fontsize=\scriptsize,
+  frame=single,
+  linenos,
+  stepnumber=5,
+}
+
+%%% Python
+\newmintedfile[inputpython]{python}{
+  autogobble,
+  firstnumber=1,
+  fontfamily=tt,
+  fontsize=\scriptsize,
+  frame=single,
+  linenos,
+  stepnumber=5,
+}
+
+\endinput
