@@ -1,4 +1,4 @@
-% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-graphic.sty
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-tikz.sty
 % ──────────────────────────────────────────────────────────────────────────────
 %
 % This file is part of the "`frwyslnd` bundle". The development version of
@@ -10,7 +10,7 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesPackage{frwyslnd-core-graphic}[2026/06/16 The `graphic` module of the
+\ProvidesPackage{frwyslnd-core-tikz}[2026/06/16 The `tikz` module of the
 `core` package of the `frwyslnd` bundle]
 
 % ENGINE
@@ -18,21 +18,32 @@
 %% to write checks for other TeX engines.
 
 % DEPENDENCIES
-%% `frwyslnd-color`: The `color` module of the `core` package of the `frwyslnd`
-%% bundle.
-\RequirePackage{frwyslnd-core-color}
+%% `frwyslnd-placeholder`: The `placeholder` module of the `core` package of the
+%% `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core-placeholder}
 
-%% `float`: Improved interface for floating objects.
-\RequirePackage{float}
+%% `tikz`: Create PostScript and PDF graphics in TeX.
+% \RequirePackage{tikz} %% Loaded by `tcolorbox`.
 
-%% `graphicx`: Enhanced support for graphics.
-\RequirePackage{graphicx}
+%% `tcolorbox`: Colored boxes, for LaTeX examples and theorems, etc.
+\RequirePackage{tcolorbox}
 
-%% `scalerel`: Constrained scaling and stretching of objects.
-\RequirePackage{scalerel}
+%% `tikz-cd`: Create commutative diagrams with TikZ.
+\RequirePackage{tikz-cd}
 
-%% `scaletextbullet`: Resize the \textbullet without changing its vertical
-%% center.
-\RequirePackage{scaletextbullet}
+% TIKZ LIBRARIES
+\usetikzlibrary{calligraphy}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{intersections}
+
+% CONFIGURATIONS
+% `tikz-cd`
+\tikzcdset{
+  arrow style=tikz,
+  diagrams={
+    shorten=4pt,
+    >={Straight Barb[round,scale=0.675,width=7pt]}
+  },
+}
 
 \endinput
