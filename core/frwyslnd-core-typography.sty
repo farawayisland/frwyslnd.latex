@@ -1,4 +1,4 @@
-% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core.sty
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-typography.sty
 % ──────────────────────────────────────────────────────────────────────────────
 %
 % This file is part of the "`frwyslnd` bundle". The development version of
@@ -10,20 +10,27 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesPackage{frwyslnd-core}[2026/06/16 The `core` package of the `frwyslnd`
-bundle]
+\ProvidesPackage{frwyslnd-core-typography}[2026/06/16 The `typography` module of
+the `core` package of the `frwyslnd` bundle]
 
 % ENGINE
 %% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
 %% to write checks for other TeX engines.
 
-% MODULES
-%% \RequirePackage{frwyslnd-core-color} %% Loaded by `frwyslnd-core-graphic`.
-%% \RequirePackage{frwyslnd-core-graphic} %% Loaded by `frwyslnd-core-caption`.
-%% \RequirePackage{frwyslnd-core-caption} %% Loaded by `frwyslnd-core-language`.
-%% \RequirePackage{frwyslnd-core-language} %% Loaded by `frwyslnd-core-font`.
-%% \RequirePackage{frwyslnd-core-font} %% Loaded by `frwyslnd-core-symbol`
-%% \RequirePackage{frwyslnd-core-symbol} %% Loaded by `frwyslnd-core-typography`
-\RequirePackage{frwyslnd-core-typography}
+% DEPENDENCIES
+%% `frwyslnd-symbol`: The `symbol` module of the `core` package of the
+%% `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core-symbol}
+
+%% `microtype`: Subliminal refinements towards typographical perfection.
+\RequirePackage[babel]{microtype}
+
+%% `setspace`: Set space between lines.
+\RequirePackage{setspace}
+
+% CONFIGURATIONS
+%% `setspace`
+\setdisplayskipstretch{}
+\AtBeginDocument{\onehalfspacing}
 
 \endinput
