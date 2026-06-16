@@ -1,0 +1,65 @@
+% ~/Library/texmf/tex/latex/frwyslnd/core/frwyslnd-core-symbol.sty
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-core-symbol}[2026/06/16 The `symbol` module of the
+`core` package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-font`: The `font` module of the `core` package of the
+%% `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core-font}
+
+%% CIRCULAR SYMBOLS
+%%% Resizeable \bullet macro
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/389240
+\newcommand*{\rbullet}[1][0.5]{\mathbin{\ThisStyle{\vcenter{\hbox{%
+      \scalebox{#1}{$\SavedStyle\bullet$}}}}}%
+}
+
+%%% Resizeable \textbullet macro
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/730865
+\newcommand*{\rtextbullet}[1][0.7]{\scaletextbullet{#1}}
+
+%% SQUARE SYMBOLS
+%%% Custom \squarebullet macro
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/487742
+\newlength\vcenterht
+\newlength\halfht
+\newcommand*{\squarebullet}{\mathbin{\ThisStyle{%
+                  \setbox0=\hbox{$\SavedStyle\bullet$}%
+                  \setbox2=\hbox{$\SavedStyle()$}%
+                  \vcenterht=\dimexpr0.5\dimexpr\ht2-\dp2\relax\relax
+                  \halfht=\dimexpr\ht0-\vcenterht\relax
+                  \kern0.5\dimexpr\wd0-2\halfht\relax
+                  \rule[\dimexpr\vcenterht-\halfht\relax]{2\halfht}{2\halfht}%
+                  \kern0.5\dimexpr\wd0-2\halfht\relax
+      }}%
+}
+\newcommand*{\squarebulletoverlay}{\ThisStyle{\ooalign{%
+$\SavedStyle\squarebullet$\cr\textcolor{red}{$\SavedStyle\bullet$}}}}
+
+%%% Custom \textsquarebullet macro
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/300556
+\DeclareRobustCommand{\textsquarebullet}{%
+      \makebox[0.4125em]{\raisebox{0.45ex}{%
+      \vrule height 0.5775ex depth -0.0825ex width 0.495ex}}%
+}
+
+\endinput
