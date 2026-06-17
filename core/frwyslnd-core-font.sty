@@ -10,7 +10,7 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesPackage{frwyslnd-core-font}[2026/06/16 The `font` module of the `core`
+\ProvidesPackage{frwyslnd-core-font}[2026/06/18 The `font` module of the `core`
 package of the `frwyslnd` bundle]
 
 % ENGINE
@@ -18,9 +18,8 @@ package of the `frwyslnd` bundle]
 %% to write checks for other TeX engines.
 
 % DEPENDENCIES
-%% `frwyslnd-language`: The `language` module of the `core` package of the
+%% `frwyslnd-core-language`: The `language` module of the `core` package of the
 %% `frwyslnd` bundle.
-\RequirePackage{frwyslnd-core-language}
 
 %% `newpx`: Alternative uses of the PX fonts, with improved metrics.
 \usepackage[
@@ -32,23 +31,25 @@ package of the `frwyslnd` bundle]
 ]{newpxtext}
 
 %% `amsmath`: AMS mathematical facilities for LaTeX.
-%% \RequirePackage{amsmath} %% Loaded by `mathtools`.
+%%% Loaded by `mathtools`.
+%% \RequirePackage{amsmath}
 
 %% `mathtools`: Mathematical tools to use with `amsmath`.
 \RequirePackage{mathtools}
 
 %% `unicode-math`: Unicode mathematics support for XeTeX and LuaTeX.
+%%% Loaded by `newpx` but not loaded by `newpxtext`.
 \RequirePackage[
   warnings-off={mathtools-colon,mathtools-overbracket},
-]{unicode-math} %% Loaded by `newpx` but not loaded by
-%% `newpxtext`.
+]{unicode-math}
 
 % SERIF TEXT FONTS
 %% TeX Gyre PagellaX.
 %%% Primary serif text font.
+%%% Loaded by `newpxtext`.
 %%% Source:
 %%% https://ctan.org/tex-archive/fonts/newpx/opentype
-%%% \setmainfont[%%% Loaded by `newpxtext`.
+%%% \setmainfont[
 %%%   Scale=1,
 %%% ]{TeX Gyre PagellaX}
 

@@ -10,7 +10,7 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesPackage{frwyslnd-core}[2026/06/16 The `core` package of the `frwyslnd`
+\ProvidesPackage{frwyslnd-core}[2026/06/18 The `core` package of the `frwyslnd`
 bundle]
 
 % ENGINE
@@ -18,19 +18,56 @@ bundle]
 %% to write checks for other TeX engines.
 
 % MODULES
-%% \RequirePackage{frwyslnd-core-color} %% Loaded by `frwyslnd-core-graphic`.
-%% \RequirePackage{frwyslnd-core-graphic} %% Loaded by `frwyslnd-core-caption`.
-%% \RequirePackage{frwyslnd-core-caption} %% Loaded by `frwyslnd-core-language`.
-%% \RequirePackage{frwyslnd-core-language} %% Loaded by `frwyslnd-core-font`.
-%% \RequirePackage{frwyslnd-core-font} %% Loaded by `frwyslnd-core-symbol`
-%% \RequirePackage{frwyslnd-core-symbol} %% Loaded by `frwyslnd-core-typography`
-%% \RequirePackage{frwyslnd-core-typography} %% Loaded by `frwyslnd-core-chrono`
-%% \RequirePackage{frwyslnd-core-chrono} %% Loaded by `frwyslnd-core-list`
-%% \RequirePackage{frwyslnd-core-list} %% Loaded by `frwyslnd-core-listing`
-%% \RequirePackage{frwyslnd-core-listing} %% Loaded by `frwyslnd-core-table`
-%% \RequirePackage{frwyslnd-core-table} %% Loaded by `frwyslnd-core-tool`
-%% \RequirePackage{frwyslnd-core-tool} %% Loaded by `frwyslnd-core-placeholder`
-%% \RequirePackage{frwyslnd-core-placeholder} %% Loaded by `frwyslnd-core-tikz`
+%% Initially the `frwyslnd` modules explicitly required each module dependency
+%% but TeX does not handle arbitrarily nested
+%% `\RequirePackage`/`\usepackage`/`\input` calls.
+%% To work around this, the modules will instead be loaded in their intended
+%% order here, and their module dependencies will be listed as comments inside
+%% each module but will no longer be explicitly required.
+%% References:
+%% https://mirrors.ctan.org/info/texbytopic/TeXbyTopic.pdf#subsection.35.2.15
+%% https://texfaq.org/FAQ-inputlev
+
+%% `color`: Does not require any other module but should be loaded first.
+\RequirePackage{frwyslnd-core-color}
+
+%% `graphic`: Requires `frwyslnd-core-color`.
+\RequirePackage{frwyslnd-core-graphic}
+
+%% `caption`: Requires `frwyslnd-core-graphic`.
+\RequirePackage{frwyslnd-core-caption}
+
+%% `language`: Requires `frwyslnd-core-caption`.
+\RequirePackage{frwyslnd-core-language}
+
+%% `font`: Requires `frwyslnd-core-language`
+\RequirePackage{frwyslnd-core-font}
+
+%% `symbol`: Requires `frwyslnd-core-font`
+\RequirePackage{frwyslnd-core-symbol}
+
+%% `typography`: Requires `frwyslnd-core-symbol`
+\RequirePackage{frwyslnd-core-typography}
+
+%% `chrono`: Requires `frwyslnd-core-typography`
+\RequirePackage{frwyslnd-core-chrono}
+
+%% `list`: Requires `frwyslnd-core-chrono`
+\RequirePackage{frwyslnd-core-list}
+
+%% `listing`: Requires `frwyslnd-core-list`
+\RequirePackage{frwyslnd-core-listing}
+
+%% `table`: Requires `frwyslnd-core-listing`
+\RequirePackage{frwyslnd-core-table}
+
+%% `tool`: Requires `frwyslnd-core-table`
+\RequirePackage{frwyslnd-core-tool}
+
+%% `placeholder`: Requires `frwyslnd-core-tool`
+\RequirePackage{frwyslnd-core-placeholder}
+
+%% `placeholder`: Requires `frwyslnd-core-placeholder`.
 \RequirePackage{frwyslnd-core-tikz}
 
 \endinput
