@@ -21,21 +21,24 @@
 %% `frwyslnd-core-font`: The `font` module of the `core` package of the
 %% `frwyslnd` bundle.
 
+%% `centernot`: Centered \not command.
+\RequirePackage{centernot}
+
 %% CIRCULAR SYMBOLS
-%%% Resizeable \bullet macro
+%%% Resizeable \bullet macro.
 %%%% Source:
 %%%% https://tex.stackexchange.com/a/389240
 \newcommand*{\rbullet}[1][0.5]{\mathbin{\ThisStyle{\vcenter{\hbox{%
       \scalebox{#1}{$\SavedStyle\bullet$}}}}}%
 }
 
-%%% Resizeable \textbullet macro
+%%% Resizeable \textbullet macro.
 %%%% Source:
 %%%% https://tex.stackexchange.com/a/730865
 \newcommand*{\rtextbullet}[1][0.7]{\scaletextbullet{#1}}
 
 %% SQUARE SYMBOLS
-%%% Custom \squarebullet macro
+%%% Custom \squarebullet macro.
 %%%% Source:
 %%%% https://tex.stackexchange.com/a/487742
 \newlength\vcenterht
@@ -53,12 +56,18 @@
 \newcommand*{\squarebulletoverlay}{\ThisStyle{\ooalign{%
 $\SavedStyle\squarebullet$\cr\textcolor{red}{$\SavedStyle\bullet$}}}}
 
-%%% Custom \textsquarebullet macro
+%%% Custom \textsquarebullet macro.
 %%%% Source:
 %%%% https://tex.stackexchange.com/a/300556
 \DeclareRobustCommand{\textsquarebullet}{%
       \makebox[0.4125em]{\raisebox{0.45ex}{%
       \vrule height 0.5775ex depth -0.0825ex width 0.495ex}}%
 }
+
+%% STYLIZED SYMBOL MACROS
+%%% Custom \trimmedoverline macro.
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/95084
+\newcommand*{\trimmedoverline}[2][3mu]{{}\mspace{#1}\overline{\mspace{-#1}#2}}
 
 \endinput
