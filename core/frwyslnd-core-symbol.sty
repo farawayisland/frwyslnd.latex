@@ -24,7 +24,7 @@
 %% `centernot`: Centered \not command.
 \RequirePackage{centernot}
 
-%% CIRCULAR SYMBOLS
+%% CIRCULAR MACROS
 %%% Resizeable \bullet macro.
 %%%% Source:
 %%%% https://tex.stackexchange.com/a/389240
@@ -37,7 +37,60 @@
 %%%% https://tex.stackexchange.com/a/730865
 \newcommand*{\rtextbullet}[1][0.7]{\scaletextbullet{#1}}
 
-%% SQUARE SYMBOLS
+%% DELIMITER MACROS
+%%% Custom \DeclareSpacedPairedDelimiter
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/730865
+\ExplSyntaxOn
+\NewDocumentCommand{\DeclareSpacedPairedDelimiter}{mmm}
+{
+      \egreg_delimiter:NcNN {#1}{__egreg_\cs_to_str:N #1:w} #2 #3
+}
+
+\cs_new_protected:Nn \egreg_delimiter:NNNN
+{
+      \DeclarePairedDelimiter{#2}{#3}{#4}
+      \NewDocumentCommand{#1}{s o d<> m}
+      {
+            \IfBooleanTF{##1}
+            {
+                  #2*{\egreg_spacedarg:nn {##3}{##4}}
+            }
+            {
+                  \IfNoValueTF{#2}
+                  {
+                        #2{\egreg_spacedarg:nn {##3}{##4}}
+                  }
+                  {
+                        #2[##2]{\egreg_spacedarg:nn {##3}{##4}}
+                  }
+            }
+      }
+}
+\cs_generate_variant:Nn \egreg_delimiter:NNNN {Nc}
+\cs_new_protected:Nn \egreg_spacedarg:nn
+{
+      \tl_if_novalue:nF {#1}
+      {
+            \str_case:nnF {#1}
+            { {\,}{\,} {\:}{\:} {\;}{\;} }
+            { \mspace{#1} }
+      }
+      #2
+      \tl_if_novalue:nF {#1}
+      {
+            \str_case:nnF {#1}
+            { {\,}{\,} {\:}{\:} {\;}{\;} }
+            { \mspace{#1} }
+      }
+}
+\ExplSyntaxOff
+
+\DeclareSpacedPairedDelimiter{\braces}{\lbrace}{\rbrace}
+\DeclareSpacedPairedDelimiter{\brackets}{[}{]}
+\DeclareSpacedPairedDelimiter{\parens}{(}{)}
+
+%% SQUARE MACROS
 %%% Custom \squarebullet macro.
 %%%% Source:
 %%%% https://tex.stackexchange.com/a/487742
