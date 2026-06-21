@@ -49,17 +49,17 @@ package of the `frwyslnd` bundle]
 % SERIF TEXT FONTS
 %% TeX Gyre PagellaX.
 %%% Primary serif text font.
-%%% Loaded by `newpxtext`.
-%%% Source:
-%%% https://ctan.org/tex-archive/fonts/newpx/opentype
-%%% \setmainfont{TeX Gyre PagellaX}[
-%%%   Scale=1,
-%%% ]
+%%%% Loaded by `newpxtext`.
+%%%% Source:
+%%%% https://ctan.org/tex-archive/fonts/newpx/opentype
+%%%% \setmainfont{TeX Gyre PagellaX}[
+%%%%   Scale=1,
+%%%% ]
 
 %% NewComputerModern10.
 %%% Additional serif text font.
-%%% Source:
-%%% https://www.ctan.org/tex-archive/fonts/newcomputermodern/otf
+%%%% Source:
+%%%% https://www.ctan.org/tex-archive/fonts/newcomputermodern/otf
 \newfontfamily{\NCM}{NewCM10}[
   BoldFont=*-Bold,
   BoldItalicFont=*-BoldItalic,
@@ -72,9 +72,9 @@ package of the `frwyslnd` bundle]
 % SANS TEXT FONTS
 %% URW Classico.
 %%% Primary sans-serif text font.
-%%% Sources:
-%%% https://ctan.org/tex-archive/fonts/urw/classico/opentype
-%%% https://tug.org/fonts/getnonfreefonts/
+%%%% Sources:
+%%%% https://ctan.org/tex-archive/fonts/urw/classico/opentype
+%%%% https://tug.org/fonts/getnonfreefonts/
 \setsansfont{URWClassico}[
   BoldFont=*-Bold,
   BoldItalicFont=*-BoldItalic,
@@ -86,8 +86,8 @@ package of the `frwyslnd` bundle]
 
 %% NewComputerModernSans10.
 %%% Additional sans-serif text font.
-%%% Source:
-%%% https://www.ctan.org/tex-archive/fonts/newcomputermodern/otf
+%%%% Source:
+%%%% https://www.ctan.org/tex-archive/fonts/newcomputermodern/otf
 \newfontfamily{\NCMSans}{NewCMSans10}[
   BoldFont=*-Bold,
   BoldItalicFont=*-BoldOblique,
@@ -99,8 +99,8 @@ package of the `frwyslnd` bundle]
 
 %% TeX Gyre Heros.
 %%% Additional sans-serif text font.
-%%% Source:
-%%% https://ctan.org/tex-archive/fonts/tex-gyre/opentype
+%%%% Source:
+%%%% https://ctan.org/tex-archive/fonts/tex-gyre/opentype
 \newfontfamily{\TGHeros}{texgyreheros}[
   BoldFont=*-bold,
   BoldItalicFont=*-bolditalic,
@@ -113,8 +113,8 @@ package of the `frwyslnd` bundle]
 % MONOSPACED TEXT FONTS
 %% Inconsolatazi4.
 %%% Primary monospaced text font.
-%%% Source:
-%%% https://ctan.org/tex-archive/fonts/inconsolata/opentype
+%%%% Source:
+%%%% https://ctan.org/tex-archive/fonts/inconsolata/opentype
 \setmonofont{Inconsolatazi4}[
   BoldFont=*-Bold,
   Extension=.otf,
@@ -125,8 +125,8 @@ package of the `frwyslnd` bundle]
 
 %% JetBrains Mono.
 %%% Additional monospaced text font.
-%%% Source:
-%%% https://ctan.org/tex-archive/fonts/jetbrainsmono-otf/fonts/opentype/SIL/jetbrainsmono
+%%%% Source:
+%%%% https://ctan.org/tex-archive/fonts/jetbrainsmono-otf/fonts/opentype/SIL/jetbrainsmono
 \newfontfamily{\JBMono}{JetBrainsMono}[
   BoldFont=*-Medium,
   BoldItalicFont=*-MediumItalic,
@@ -138,8 +138,8 @@ package of the `frwyslnd` bundle]
 
 %% NewComputerModernMono10.
 %%% Additional monospaced text font.
-%%% Source:
-%%% https://www.ctan.org/tex-archive/fonts/newcomputermodern/otf
+%%%% Source:
+%%%% https://www.ctan.org/tex-archive/fonts/newcomputermodern/otf
 \newfontfamily{\NCMMono}{NewCMMono10}[
   BoldFont=*-Bold,
   BoldItalicFont=*-BoldOblique,
@@ -151,26 +151,23 @@ package of the `frwyslnd` bundle]
 
 % MATH FONTS
 %% Asana Math.
-%%% Primary math font.
-%%% Source:
-%%% https://ctan.org/tex-archive/fonts/Asana-Math
+%%% Primary math font which should be set first.
+%%%% Source:
+%%%% https://ctan.org/tex-archive/fonts/Asana-Math
 \setmathfont{Asana Math}[
-  Scale=1,
-]
-\setmathfont{Asana Math}[
-  Scale=1,
-  version=asana-math,
-]
-\setmathfont{Asana Math}[
-  range={bfcal,cal},
   Scale=1,
   Style=Alternate,
 ]
+\setmathfont{Asana Math}[
+  Scale=1,
+  Style=Alternate,
+  version=asana-math,
+]
 
-%%% Asana Math calligraphic R patch.
-%%% Source:
-%%% https://tex.stackexchange.com/a/538972
-\newcommand{\ToggleAsanaMathCalRPatch}{
+%%% Patch for calligraphic R.
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/538972
+\NewDocumentCommand{\PatchAsanaMathCalR}{}{
   \directlua{
     % We want to stop the fontloader from discarding names it considers useless,
     % so enable keepnames.
@@ -181,7 +178,7 @@ package of the `frwyslnd` bundle]
     % which will make your document significantly slower.
     fonts.handlers.otf.cache.enabled = false
     fonts.handlers.otf.addfeature {
-      name = "asana-salt-r",
+      name = "asana-math-salt-r",
       type = "substitution",
       data = {
         [0x211B] = "uni211B.salt"
@@ -189,17 +186,142 @@ package of the `frwyslnd` bundle]
     }
   }
   \setmathfont{Asana Math}[
-    range={bfcal,cal},
-    RawFeature=asana-salt-r,
+    RawFeature=asana-math-salt-r,
     Scale=1,
     Style=Alternate,
+    version=asana-math-salt-r,
+  ]
+  \setmathfont{STIX Two Math}[
+    range={
+      \acidfree,
+      \arabichad,
+      \arabicmaj,
+      \astrosun,
+      \awint,
+      \Bbbsum,
+      \bigbot,
+      \bigcap,
+      \bigcup,
+      \bigcupdot,
+      \biginterleave,
+      \bigodot,
+      \bigoplus,
+      \bigotimes,
+      \bigsqcap,
+      \bigsqcup,
+      \bigtalloblong,
+      \bigtimes,
+      \bigtop,
+      \bigtriangleleft,
+      \biguplus,
+      \bigvee,
+      \bigwedge,
+      \blackcircledrightdot,
+      \blackcircledtwodots,
+      \blacksmiley,
+      \botsemicircle,
+      \circledrightdot,
+      \circledtwodots,
+      \circlevertfill,
+      \cirfnint,
+      \conjquant,
+      \coprod,
+      \danger,
+      \diagdown,
+      \diagup,
+      \disjquant,
+      \draftingarrow,
+      \female,
+      \fint,
+      \fullouterjoin,
+      \iiiint,
+      \iiint,
+      \iint,
+      \int,
+      \intBar,
+      \intbar,
+      \intcap,
+      \intclockwise,
+      \intcup,
+      \intlarhk,
+      \intx,
+      \Hermaphrodite,
+      \Join,
+      \leftmoon,
+      \leftouterjoin,
+      \llblacktriangle,
+      \lltriangle,
+      \lowint,
+      \lrblacktriangle,
+      \lrtriangle,
+      \male,
+      \mdblkcircle,
+      \mdsmblksquare,
+      \mdsmwhtcircle,
+      \mdsmwhtsquare,
+      \mdwhtcircle,
+      \modtwosum,
+      \neuter,
+      \npolint,
+      \oiiint,
+      \oiint,
+      \oint,
+      \ointctrclockwise,
+      \pointint,
+      \prod,
+      \rightmoon,
+      \rightouterjoin,
+      \rppolint,
+      \scpolint,
+      \smblklozenge,
+      \smwhtlozenge,
+      \sqint,
+      \sum,
+      \sumint,
+      \sun,
+      \topsemicircle,
+      \twonotes,
+      \ulblacktriangle,
+      \ultriangle,
+      \upint,
+      \urblacktriangle,
+      \urtriangle,
+      \varointclockwise,
+      \xbsol,
+      \xsol,
+      \zcmp,
+      \zpipe,
+      \zproject,
+    },
+    Scale=1,
   ]
 }
 
+%%% Patch for \models and \vDash.
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/764027
+\AtBeginDocument{\PatchAsanaMathWrongSymbols}
+
+\ExplSyntaxOn
+\NewDocumentCommand{\PatchAsanaMathWrongSymbols}{}
+{
+  \NewCommandCopy{\standardmodels}{\models}
+  \NewCommandCopy{\standardvDash}{\vDash}
+  \RenewDocumentCommand{\models}{}
+  {
+    \str_if_eq:vnTF {math@version} {normal} {\standardvDash} {\standardmodels}
+  }
+  \RenewDocumentCommand{\vDash}{}
+  {
+    \str_if_eq:vnTF {math@version} {normal} {\standardmodels} {\standardvDash}
+  }
+}
+\ExplSyntaxOff
+
 %% Stix Two Math
 %%% Secondary math font.
-%%% Source:
-%%% https://ctan.org/tex-archive/fonts/stix2-otf
+%%%% Source:
+%%%% https://ctan.org/tex-archive/fonts/stix2-otf
 \setmathfont{STIX Two Math}[
   Scale=1,
   version=stix-two-math,
