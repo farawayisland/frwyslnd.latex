@@ -1,0 +1,442 @@
+% ~/Library/texmf/tex/latex/frwyslnd/math/frwyslnd-math-foundations.sty
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-math-foundations}[2026/06/20 The `foundations` module
+of the `math` package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-core`: The `core` package of the `frwyslnd` bundle.
+
+%% `amsthm`: Typesetting theorems (AMS style).
+
+%% `cleveref`: Intelligent cross-referencing.
+%%% Should be loaded later in `frwyslnd-reference`.
+
+%% `hyperref`: Extensive support for hypertext in LaTeX.
+%%% Should be loaded later in `frwyslnd-reference`.
+
+%% `mleftright`: Variants of delimiters that act as maths open/close.
+
+% LOGICAL CONNECTIVES
+%% Material conditional (material implication).
+%%% Left to right.
+\newcommand*{\ifthen}{\DOTSB\rightarrow}
+\newcommand*{\materiallyimplies}{\ifthen}
+\newcommand*{\onlyif}{\ifthen}
+\AtBeginDocument{\renewcommand*{\implies}{\ifthen}}
+
+%%% Right to left.
+\newcommand*{\isimpliedby}{\DOTSB\leftarrow}
+\newcommand*{\lif}{\isimpliedby}
+\newcommand*{\materiallyimpliedby}{\isimpliedby}
+\AtBeginDocument{\renewcommand*{\impliedby}{\isimpliedby}}
+
+%% Material biconditional (material bi-implication).
+\newcommand*{\ifandonlyif}{\iff}
+\AtBeginDocument{\renewcommand*{\iff}{\DOTSB\leftrightarrow}}
+
+%% Negation.
+\NewDocumentCommand{\negationof}{s O{3mu} m}{
+  \IfBooleanTF{#1}{\overline{#3}}{\trimmedoverline[#2]{#3}}
+}
+
+% LOGICAL DEFINITIONS AND EQUALITIES
+%% Defined-to-be-equal-to.
+\newcommand*{\defeq}{\coloneq}
+\newcommand*{\defiff}{\text{ :iff }}
+
+%% If and only if.
+\newcommand*{\iffdef}{\text{ iff: }}
+\AtBeginDocument{\renewcommand*{\eqdef}{\eqcolon}}
+
+%% Questionable equality.
+\newcommand*{\questioneq}{\overset{?}{=}}
+
+% LOGICAL QUANTIFIERS
+%% Existential quantifier.
+\newcommand*{\forsome}{\exists}
+\newcommand*{\thereexists}{\exists}
+\newcommand*{\thereissome}{\exists}
+
+%%% Universal quantifier.
+\newcommand*{\forevery}{\forall}
+\newcommand*{\givenany}{\forall}
+
+% METALOGICAL NOTATION
+%% Assertion.
+\AtBeginDocument{\renewcommand*{\assert}{\vdash}}
+
+%% End-of-proof symbol (tombstone or halmos or Q.E.D).
+\renewcommand*{\qedsymbol}{\(\mdlgblksquare\)}
+
+%% Model.
+\AtBeginDocument{\renewcommand*{\models}{\vDash}}
+
+%% Semantic consequence (entailment).
+\newcommand*{\entailedby}{\Dashv}
+\newcommand*{\entails}{\vDash}
+\newcommand*{\isentailedby}{\entailedby}
+
+%% Syntactic consequence (derivability).
+\newcommand*{\derivablefrom}{\dashv}
+\newcommand*{\isderivablefrom}{\derivablefrom}
+\newcommand*{\proves}{\vdash}
+
+%% Proof environments.
+%%% Proof environment heading.
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/762886
+\providecommand{\proofnamefont}{\bfseries}
+\xpatchcmd{\proof}{\itshape}{\proofnamefont}{}{}
+
+%%% Induction environment.
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/762886
+\newenvironment{induction}
+{\if@inlabel\else\par\vspace{\topsep}\noindent\fi\ignorespaces}
+{\par\vspace{\topsep}}
+\newcommand*{\bstep}{\ifvmode\noindent\fi(\textit{Base case})\ \ignorespaces}
+\newcommand*{\istep}{\par\medskip\noindent(\textit{Induction step})\
+\ignorespaces}
+
+%% Theorem environments.
+%%% Custom \newcustomtheorem macro.
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/752203
+\AtBeginDocument{
+  \NewDocumentCommand{\newcustomtheorem}{m m}{%
+    \newtheorem{custom#1inner}{#2}
+    \crefformat{custom#1inner}{##2#2~##1##3}
+    \NewDocumentEnvironment{custom#1}{m}{%
+      \IfBlankTF{##1}{%
+        \expandafter\renewcommand\csname thecustom#1inner\endcsname{\unskip}
+      }{%
+        \expandafter\renewcommand\csname thecustom#1inner\endcsname{##1}
+      }%
+      \csname custom#1inner\endcsname
+    }{%
+      \csname endcustom#1inner\endcsname
+    }
+  }
+}
+
+%%% Theorem environment names.
+\newcommand*{\acknowledgmentname}{Acknowledgment}
+\newcommand*{\algorithmname}{Algorithm}
+\newcommand*{\answername}{Answer}
+\newcommand*{\assertionname}{Assertion}
+\newcommand*{\assumptionname}{Assumption}
+\newcommand*{\axiomname}{Axiom}
+\newcommand*{\casename}{Case}
+\newcommand*{\claimname}{Claim}
+\newcommand*{\conclusionname}{Conclusion}
+\newcommand*{\conditionname}{Condition}
+\newcommand*{\conjecturename}{Conjecture}
+\newcommand*{\corollaryname}{Corollary}
+\newcommand*{\criterionname}{Criterion}
+\newcommand*{\definitionname}{Definition}
+\newcommand*{\examplename}{Example}
+\newcommand*{\exercisename}{Exercise}
+\newcommand*{\hypothesisname}{Hypothesis}
+\newcommand*{\lemmaname}{Lemma}
+\newcommand*{\notationname}{Notation}
+\newcommand*{\notename}{Note}
+\newcommand*{\problemname}{Problem}
+\newcommand*{\propertyname}{Property}
+\newcommand*{\propositionname}{Proposition}
+\newcommand*{\questionname}{Question}
+\newcommand*{\remarkname}{Remark}
+\newcommand*{\solutionname}{Solution}
+\newcommand*{\summaryname}{Summary}
+\newcommand*{\theoremname}{Theorem}
+
+%%% Theorem environment styles.
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/17555
+\definelength{thmsepabove}{\topsep}
+\definelength{thmsepbelow}{\thmsepabove}
+\definelength{thmsepheading}{5pt plus 1pt minus 1pt}
+
+\newtheoremstyle{newdefinition}
+{\thmsepabove}                               %%%% Space above.
+{\thmsepbelow}                               %%%% Space below.
+{\normalfont}                                %%%% Body font.
+{0pt}                                        %%%% Indent amount.
+{\bfseries}                                  %%%% Theorem heading font.
+{.}                                          %%%% Punctuation after
+%                                                 theorem heading.
+{\thmsepheading}                             %%%% Space after theorem heading.
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}} %%%% Theorem heading spec.
+
+\newtheoremstyle{newplain}
+{\thmsepabove}                               %%%% Space above.
+{\thmsepbelow}                               %%%% Space below.
+{\itshape}                                   %%%% Body font.
+{0pt}                                        %%%% Indent amount.
+{\bfseries}                                  %%%% Theorem heading font.
+{.}                                          %%%% Punctuation after
+%                                                 theorem heading.
+{\thmsepheading}                             %%%% Space after theorem heading.
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}} %%%% Theorem heading spec.
+
+\newtheoremstyle{newremark}
+{0.5\thmsepabove}                            %%%% Space above.
+{0.5\thmsepbelow}                            %%%% Space below.
+{\normalfont}                                %%%% Body font.
+{0pt}                                        %%%% Indent amount.
+{\itshape}                                   %%%% Theorem heading font.
+{.}                                          %%%% Punctuation after
+%                                                 theorem heading.
+{\thmsepheading}                             %%%% Space after theorem heading.
+{\thmname{#1}\thmnumber{ #2}\thmnote{ (#3)}} %%%% Theorem heading spec.
+
+%%% Theorem environment definitions.
+%%%% `newplain` theorem environments.
+\theoremstyle{newplain}
+\newtheorem{assertion}{\assertionname}[section]
+\newtheorem{conjecture}[assertion]{\conjecturename}
+\newtheorem{corollary}[assertion]{\corollaryname}
+\newtheorem{criterion}[assertion]{\criterionname}
+\newtheorem{lemma}[assertion]{\lemmaname}
+\newtheorem{proposition}[assertion]{\propositionname}
+\newtheorem{theorem}[assertion]{\theoremname}
+\AtBeginDocument{
+  \theoremstyle{newplain}
+  \newcustomtheorem{assertion}{\assertionname}
+  \newcustomtheorem{conjecture}{\conjecturename}
+  \newcustomtheorem{corollary}{\corollaryname}
+  \newcustomtheorem{criterion}{\criterionname}
+  \newcustomtheorem{lemma}{\lemmaname}
+  \newcustomtheorem{proposition}{\propositionname}
+  \newcustomtheorem{theorem}{\theoremname}
+}
+
+%%%% `newdefinition` theorem environments.
+\theoremstyle{newdefinition}
+\newtheorem{algorithm}{\algorithmname}[section]
+\newtheorem{answer}[algorithm]{\answername}
+\newtheorem{assumption}[algorithm]{\assumptionname}
+\newtheorem{axiom}[algorithm]{\axiomname}
+\newtheorem{condition}[algorithm]{\conditionname}
+\newtheorem{definition}[algorithm]{\definitionname}
+\newtheorem{example}[algorithm]{\examplename}
+\newtheorem{exercise}[algorithm]{\exercisename}
+\newtheorem{hypothesis}[algorithm]{\hypothesisname}
+\newtheorem{problem}[algorithm]{\problemname}
+\newtheorem{property}[algorithm]{\propertyname}
+\newtheorem{question}[algorithm]{\questionname}
+\newtheorem{solution}[algorithm]{\solutionname}
+\AtBeginDocument{
+  \theoremstyle{newdefinition}
+  \newcustomtheorem{algorithm}{\algorithmname}
+  \newcustomtheorem{answer}{\answername}
+  \newcustomtheorem{assumption}{\assumptionname}
+  \newcustomtheorem{axiom}{\axiomname}
+  \newcustomtheorem{condition}{\conditionname}
+  \newcustomtheorem{definition}{\definitionname}
+  \newcustomtheorem{example}{\examplename}
+  \newcustomtheorem{exercise}{\exercisename}
+  \newcustomtheorem{hypothesis}{\hypothesisname}
+  \newcustomtheorem{problem}{\problemname}
+  \newcustomtheorem{property}{\propertyname}
+  \newcustomtheorem{question}{\questionname}
+  \newcustomtheorem{solution}{\solutionname}
+}
+
+%%%% `newremark` theorem environments.
+\theoremstyle{newremark}
+\newtheorem{acknowledgment}{\acknowledgmentname}[section]
+\newtheorem{case}[acknowledgment]{\casename}
+\newtheorem{claim}[acknowledgment]{\claimname}
+\newtheorem{conclusion}[acknowledgment]{\conclusionname}
+\newtheorem{notation}[acknowledgment]{\notationname}
+\newtheorem{note}[acknowledgment]{\notename}
+\newtheorem{remark}[acknowledgment]{\remarkname}
+\newtheorem{summary}[acknowledgment]{\summaryname}
+\AtBeginDocument{
+  \theoremstyle{newremark}
+  \newcustomtheorem{acknowledgment}{\acknowledgmentname}
+  \newcustomtheorem{case}{\casename}
+  \newcustomtheorem{claim}{\claimname}
+  \newcustomtheorem{conclusion}{\conclusionname}
+  \newcustomtheorem{notation}{\notationname}
+  \newcustomtheorem{note}{\notename}
+  \newcustomtheorem{remark}{\remarkname}
+  \newcustomtheorem{summary}{\summaryname}
+}
+
+% SET-THEORETIC NOTATION
+%% Cardinal number.
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/730865
+\ExplSyntaxOn
+\DeclarePairedDelimiter{\__card}{\lvert}{\rvert}
+\NewDocumentCommand{\card}{s o d<> m}{
+  \IfBooleanTF{#1}
+  {
+    \__card*{\egreg_spacedarg:nn {#3}{\IfBlankTF{#4}{\blank}{#4}}}
+  }
+  {
+    \IfNoValueTF{#2}
+    {
+      \__card{\egreg_spacedarg:nn {#3}{\IfBlankTF{#4}{\blank}{#4}}}
+    }
+    {
+      \__card[#2]{\egreg_spacedarg:nn {#3}{\IfBlankTF{#4}{\blank}{#4}}}
+    }
+  }
+}
+\ExplSyntaxOff
+\DeclareMathOperator{\cardop}{card}
+
+%% Functions.
+%%% Domain, codomain, and image of a function.
+\DeclareMathOperator{\codom}{codom}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\im}{im}
+
+%% Inverse element.
+\NewDocumentCommand{\inv}{O{1}}{^{-#1}}
+\NewDocumentCommand{\inverseof}{O{1} m}{#2\inv[#1]}
+
+%% Set membership.
+\newcommand*{\arein}{\in}
+\newcommand*{\arenotin}{\notin}
+\newcommand*{\beingin}{\in}
+\newcommand*{\contains}{\ni}
+\newcommand*{\doesnotcontain}{\nni}
+\newcommand*{\isin}{\in}
+\newcommand*{\isnotin}{\notin}
+\newcommand*{\notbeingin}{\notin}
+\newcommand*{\notcontain}{\nni}
+\newcommand*{\notni}{\nni}
+\newcommand*{\willbein}{\in}
+\newcommand*{\willnotbein}{\notin}
+
+%% Set inclusion (subset relation).
+\newcommand*{\includedin}{\subseteq}
+\newcommand*{\includes}{\supseteq}
+\newcommand*{\isapropersubsetof}{\subset}
+\newcommand*{\isapropersupersetof}{\supset}
+\newcommand*{\isasubsetof}{\subseteq}
+\newcommand*{\isasupersetof}{\supseteq}
+\newcommand*{\isincludedin}{\subseteq}
+\newcommand*{\isproperlyincludedin}{\subset}
+\newcommand*{\properlyincludedin}{\subset}
+\newcommand*{\properlyincludes}{\supset}
+\newcommand*{\propersubsetof}{\subset}
+\newcommand*{\propersupersetof}{\supset}
+\newcommand*{\subsetof}{\subseteq}
+\newcommand*{\supersetof}{\supseteq}
+
+%% Set intersection.
+\newcommand*{\intersect}{\cap}
+\newcommand*{\intersection}{\cap}
+
+%% Set specification.
+%%% Source:
+%%% https://tex.stackexchange.com/a/763668
+\ExplSyntaxOn
+\NewDocumentCommand{\set}{sO{}m}
+{
+  \group_begin:
+  \seq_set_split:Nnn \l__egreg_set_input_seq {\suchthat} {#3}
+  \int_case:nnF { \seq_count:N \l__egreg_set_input_seq }
+  {
+    {1} { \__egreg_set_bylist:nnn {#1} {#2} {#3} }
+    {2} {
+      \__egreg_set_byproperty:nnee {#1} {#2}
+      { \seq_item:Nn \l__egreg_set_input_seq {1} }
+      { \seq_item:Nn \l__egreg_set_input_seq {2} }
+    }
+  }{OOPS!}
+  \group_end:
+}
+
+\seq_new:N \l__egreg_set_input_seq
+\tl_new:N \l__egreg_set_st_tl
+
+\cs_new_protected:Nn \__egreg_set_byproperty:nnnn
+{
+  \bool_if:nTF {#1}
+  {% auto sizing
+    \left\lbrace #3 \nonscript\;\middle\vert\nonscript\; #4 \right\rbrace
+  }
+  {
+    \mathopen{#2\lbrace} #3 \mathrel{#2|} #4 \mathclose{#2\rbrace}
+  }
+}
+\cs_generate_variant:Nn \__egreg_set_byproperty:nnnn {nnee}
+
+\cs_new_protected:Nn \__egreg_set_bylist:nnn
+{
+  \bool_if:nTF {#1} { \left\lbrace } { \mathopen{#2\lbrace} }
+  \group_begin:
+  \clist_use:nn {#3} {,\penalty0~\hspace{0pt plus 3pt}}
+  \group_end:
+  \bool_if:nTF {#1} { \right\rbrace } { \mathclose{#2\rbrace} }
+}
+\ExplSyntaxOff
+
+%% Set union.
+\newcommand*{\union}{\cup}
+
+%% Tuple.
+%%% Source:
+%%% https://tex.stackexchange.com/a/763668
+\ExplSyntaxOn
+\NewDocumentCommand{\tuple}{sO{}m}
+{
+  \group_begin:
+  \seq_set_split:Nnn \l__egreg_tuple_input_seq {\suchthat} {#3}
+  \int_case:nnF { \seq_count:N \l__egreg_tuple_input_seq }
+  {
+    {1} { \__egreg_tuple_bylist:nnn {#1} {#2} {#3} }
+    {2} {
+      \__egreg_tuple_byproperty:nnee {#1} {#2}
+      { \seq_item:Nn \l__egreg_tuple_input_seq {1} }
+      { \seq_item:Nn \l__egreg_tuple_input_seq {2} }
+    }
+  }{OOPS!}
+  \group_end:
+}
+
+\seq_new:N \l__egreg_tuple_input_seq
+\tl_new:N \l__egreg_tuple_st_tl
+
+\cs_new_protected:Nn \__egreg_tuple_byproperty:nnnn
+{
+  \bool_if:nTF {#1}
+  {% auto sizing
+    \left( #3 \nonscript\;\middle\vert\nonscript\; #4 \right)
+  }
+  {
+    \mathopen{#2(} #3 \mathrel{#2|} #4 \mathclose{#2)}
+  }
+}
+\cs_generate_variant:Nn \__egreg_tuple_byproperty:nnnn {nnee}
+
+\cs_new_protected:Nn \__egreg_tuple_bylist:nnn
+{
+  \bool_if:nTF {#1} { \left( } { \mathopen{#2(} }
+      \group_begin:
+      \clist_use:nn {#3} {,\penalty0~\hspace{0pt plus 3pt}}
+      \group_end:
+  \bool_if:nTF {#1} { \right) } { \mathclose{#2)} }
+}
+\ExplSyntaxOff
+
+\endinput

@@ -1,0 +1,54 @@
+% ~/Library/texmf/tex/latex/frwyslnd/math/frwyslnd-math.sty
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-math}[2026/06/20 The `math` package of the `frwyslnd`
+bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-core`: The `core` package of the `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core}
+
+%% `amsthm`: Typesetting theorems (AMS style).
+\RequirePackage{amsthm}
+
+%% `mleftright`: Variants of delimiters that act as maths open/close.
+\RequirePackage{mleftright}
+
+%% `siunitx`: A comprehensive (SI) units package.
+\RequirePackage{siunitx}
+
+% CONFIGURATIONS
+%% `siunitx`
+\robustify{\dots}
+\sisetup{
+  exponent-base={10},
+  exponent-product={\cdot},
+  group-separator={,},
+  input-decimal-markers={.},
+  input-digits={0123456789…\dots},
+  input-ignore={,},
+  inter-unit-product={\,},
+  output-decimal-marker={.},
+  quantity-product={\ },
+  range-phrase={\text{\ to\ }},
+  text-series-to-math=true,
+}
+
+% MODULES
+%% `foundations`: Does not require any other module but should be loaded first.
+\RequirePackage{frwyslnd-math-foundations}
+
+\endinput
