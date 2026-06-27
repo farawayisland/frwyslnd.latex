@@ -21,6 +21,12 @@ bundle]
 %% `frwyslnd-core`: The `core` package of the `frwyslnd` bundle.
 \RequirePackage{frwyslnd-core}
 
+%% `frwyslnd-reference`: The `reference` package of the `frwyslnd` bundle.
+%%% Should be loaded last.
+\AtEndPreamble{
+  \RequirePackage{frwyslnd-reference}
+}
+
 %% `amsthm`: Typesetting theorems (AMS style).
 \RequirePackage{amsthm}
 

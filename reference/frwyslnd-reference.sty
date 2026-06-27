@@ -1,0 +1,67 @@
+% ~/Library/texmf/tex/latex/frwyslnd/reference/frwyslnd-reference.sty
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-reference}[2026/06/20 The `reference` package of the
+`frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-core`: The `core` package of the `frwyslnd` bundle.
+\RequirePackage{frwyslnd-core}
+
+%% `hyperref`: Extensive support for hypertext in LaTeX.
+%%% Loaded by `bookmark`.
+%%% \RequirePackage{hyperref}
+
+%% `bookmark`: A new bookmark (outline) organization for `hyperref`.
+%%% Requires `hyperref` but should be loaded after it if you want to explicitly
+%%% load `hyperref`.
+\RequirePackage{bookmark}
+
+%% `cleveref`: Intelligent cross-referencing.
+%%% Should be loaded after `hyperref`.
+\RequirePackage[capitalise,nameinlink]{cleveref}
+
+%% `hypcap`: Adjusting the anchors of captions.
+%%% Should be loaded after `hyperref`.
+\RequirePackage[all]{hypcap}
+
+% CONFIGURATIONS
+%% `hyperref`
+%%% Source: https://tex.stackexchange.com/a/150984
+\hypersetup{
+  colorlinks=true,
+  filecolor=CustomBlue01,
+  linkcolor=CustomBlue01,
+  linktoc=all,
+  pdfpagelayout=SinglePage,
+  pdfpagemode=UseOutlines,
+  pdfview=Fit,
+  urlcolor=CustomBlue01,
+}
+\renewcommand*{\Hy@numberline}[1]{#1. }
+
+%% `bookmark`
+\bookmarksetup{
+  addtohook={%
+    \ifnum\bookmarkget{level}<1%
+    \bookmarksetup{bold}%
+    \fi
+  },
+  numbered,
+  open,
+}
+
+\endinput
