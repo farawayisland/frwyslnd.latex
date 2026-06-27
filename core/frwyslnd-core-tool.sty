@@ -28,6 +28,44 @@ package of the `frwyslnd` bundle]
 %% `xpatch`: Extending `etoolbox` patching commands.
 \RequirePackage{xpatch}
 
+% SEARCH-AND-REPLACE MACROS
+%% Custom \replaceany and \replaceword macros.
+%%% Source: https://tex.stackexchange.com/a/213952
+\ExplSyntaxOn
+\NewDocumentCommand{\replaceall}{mmm}
+{
+  \marian_replace_all:nnn {#1} {#2} {#3}
+}
+
+\tl_new:N \l_marian_input_text_tl_all
+
+\cs_new_protected:Npn \marian_replace_all:nnn #1 #2 #3
+{
+  \tl_set:Nn \l_marian_input_text_tl_all { #1 }
+  \tl_replace_all:Nnn \l_marian_input_text_tl_all { #2 } { #3 }
+  \tl_use:N \l_marian_input_text_tl_all
+}
+
+\NewDocumentCommand{\replacewordsonly}{mmm}
+{
+  \marian_replace_words_only:nnn {#1} {#2} {#3}
+}
+
+\tl_new:N \l_marian_input_text_tl_words_only
+\tl_new:N \l_marian_search_tl_words_only
+\tl_new:N \l_marian_replace_tl_words_only
+
+\cs_new_protected:Npn \marian_replace_words_only:nnn #1 #2 #3
+{
+  \tl_set:Nn \l_marian_input_text_tl_words_only { #1 }
+  \tl_set:Nn \l_marian_search_tl_words_only { #2 }
+  \tl_set:Nn \l_marian_replace_tl_words_only { #3 }
+  \regex_replace_all:nnN { \b\u{l_marian_search_tl_words_only}\b } {
+  \u{l_marian_replace_tl_words_only} } \l_marian_input_text_tl_words_only
+  \tl_use:N \l_marian_input_text_tl_words_only
+}
+\ExplSyntaxOff
+
 % LENGTH-RELATED MACROS
 %% Custom \definelength macro.
 %%% Source:
