@@ -1,0 +1,129 @@
+% ──────────────────────────────────────────────────────────────────────────────
+% SPDX-FileCopyrightText: 2026 farawayisland
+% SPDX-License-Identifier: GPL-3.0-or-later
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://codeberg.org/farawayisland/frwyslnd.latex
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-math-algebra}[2026/06/29 The `algebra` module of the
+`math` package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-math-foundations`: The `foundations` module of the `math` package
+%% of the `frwyslnd` bundle.
+
+% ALGEBRAIC STRUCTURES.
+%% Field.
+\NewDocumentCommand{\field}{s m}{\IfBooleanTF{#1}{\symbb{#2}}{\symbf{#2}}}
+
+%% Vector spaces.
+%%% Coordinate spaces.
+%%%% General coordinate space.
+\NewDocumentCommand{\coordplane}{s m m}{
+  \IfBooleanTF{#1}{\field*{#2}}{\field{#2}}^{#3}
+}
+
+%%%% Real coordinate plane.
+\newcommand*{\realcoordplane}{\coordplane{R}{2}}
+
+% NUMBER SYSTEMS
+%% Custom \numberset macro.
+\NewDocumentCommand{\numberset}{s m}{\IfBooleanTF{#1}{\symbb{#2}}{\symbf{#2}}}
+
+%% Integers
+\newcommand*{\integers}{\numberset{Z}}
+\newcommand*{\nonnegativeintegers}{\integers_{\geq 0}}
+\newcommand*{\nonpositiveintegers}{\integers_{\leq 0}}
+\NewDocumentCommand{\nonzerointegers}{s}{\IfBooleanTF{#1}{\integers \setminus
+\set{0}}{\integers^*}}
+\newcommand*{\positiveintegers}{\integers_{> 0}}
+
+%% Natural numbers.
+\newcommand*{\naturalnumbers}{\numberset{N}}
+\NewDocumentCommand{\naturalnumberswithoutzero}{s}{\IfBooleanTF{#1}{\naturalnumbers
+\setminus \set{0}}{\naturalnumbers_0}}
+\NewDocumentCommand{\naturalnumberswithzero}{s}{\IfBooleanTF{#1}{\naturalnumbers
+\union \set{0}}{\naturalnumbers_1}}
+\newcommand*{\naturals}{\naturalnumbers}
+\newcommand*{\naturalswithoutzero}{\naturalnumberswithoutzero}
+\newcommand*{\naturalswithzero}{\naturalnumberswithzero}
+
+%% Rational Numbers.
+\newcommand*{\rationalnumbers}{\numberset{Q}}
+\newcommand*{\rationals}{\rationalnumbers}
+
+%%%% Real numbers
+\NewDocumentCommand{\nonzeroreals}{s}{\IfBooleanTF{#1}{\realnumbers \setminus
+\set{0}}{\realnumbers^*}}
+\newcommand*{\irrationalnumbers}{\realnumbers\setminus\numberset{N}}
+\newcommand*{\irrationals}{\irrationalnumbers}
+\newcommand*{\negativerealnumbers}{\realnumbers_{< 0}}
+\newcommand*{\negativereals}{\negativerealnumbers}
+\newcommand*{\nonnegativerealnumbers}{\realnumbers_{\geq 0}}
+\newcommand*{\nonnegativereals}{\nonnegativerealnumbers}
+\newcommand*{\nonpositiverealnumbers}{\realnumbers_{\leq 0}}
+\newcommand*{\nonpositivereals}{\nonpositiverealnumbers}
+\newcommand*{\positiverealnumbers}{\realnumbers_{> 0}}
+\newcommand*{\positivereals}{\positiverealnumbers}
+\newcommand*{\realnumbers}{\numberset{R}}
+\newcommand*{\reals}{\realnumbers}
+\newcommand*{\realsgreaterthanone}{\realnumbers_{> 1}}
+
+%% Complex numbers.
+\newcommand*{\complexnumbers}{\numberset{C}}
+
+% LINEAR-ALGEBRAIC NOTATION
+%% Cross product.
+\newcommand*{\cross}{\times}
+
+%% Custom \arr macro.
+%%% Source:
+%%% https://tex.stackexchange.com/a/740667
+\ExplSyntaxOn
+\NewDocumentCommand{\arr}{O{b}m}
+{
+  \begin{#1NiceMatrix}
+    \name_arr:n {#2}
+  \end{#1NiceMatrix}
+}
+
+\cs_new_protected:Nn \name_arr:n
+{
+  \seq_set_split:Nnn \l_tmpa_seq {;} {#1}
+  \seq_map_function:NN \l_tmpa_seq \__name_arr_row:n
+}
+\cs_new_protected:Nn \__name_arr_row:n
+{
+  \clist_use:nn {#1} { & } \\
+}
+\ExplSyntaxOff
+
+%% Custom \vec redefinition.
+%%% Source:
+%%% https://github.com/latex3/unicode-math/issues/463#issuecomment-387799849
+\AtBeginDocument{\renewcommand*{\vec}[1]{\symbf{#1}}}
+
+%% Determinant.
+\AtBeginDocument{\newcommand*{\detarr}[1]{\arr[v]{#1}}}
+
+%% Orthonormal basis vectors.
+\newcommand*{\ihat}{\unitvec{i}}
+\newcommand*{\jhat}{\unitvec{j}}
+\newcommand*{\khat}{\unitvec{k}}
+
+%% Unit vector.
+\newcommand*{\unitvec}[1]{\hat{\vec{#1}}}
+
+\endinput
