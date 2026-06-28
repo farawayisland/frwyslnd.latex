@@ -10,7 +10,7 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesPackage{frwyslnd-core-tool}[2026/06/20 The `tool` module of the `core`
+\ProvidesPackage{frwyslnd-core-tool}[2026/06/29 The `tool` module of the `core`
 package of the `frwyslnd` bundle]
 
 % ENGINE
@@ -21,8 +21,12 @@ package of the `frwyslnd` bundle]
 %% `frwyslnd-core-table`: The `table` module of the `core` package of the
 %% `frwyslnd` bundle.
 
+%% `calc`: Simple arithmetic in LaTeX commands.
+%%% Loaded by `scalerel`.
+%%% \RequirePackage{calc}
+
 %% `etoolbox`: e-TeX tools for LaTeX.
-%%% Loaded by `xpatch`.
+%%% Loaded by `scalerel`.
 %%% \RequirePackage{etoolbox}
 
 %% `xpatch`: Extending `etoolbox` patching commands.
@@ -30,7 +34,8 @@ package of the `frwyslnd` bundle]
 
 % SEARCH-AND-REPLACE MACROS
 %% Custom \replaceany and \replaceword macros.
-%%% Source: https://tex.stackexchange.com/a/213952
+%%% Source:
+%%% https://tex.stackexchange.com/a/213952
 \ExplSyntaxOn
 \NewDocumentCommand{\replaceall}{mmm}
 {

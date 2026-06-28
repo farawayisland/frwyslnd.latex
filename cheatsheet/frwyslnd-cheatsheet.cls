@@ -10,7 +10,7 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesClass{frwyslnd-cheatsheet}[2026/06/20 The `cheatsheet` class of the
+\ProvidesClass{frwyslnd-cheatsheet}[2026/06/29 The `cheatsheet` class of the
 `frwyslnd` bundle]
 
 % ENGINE
@@ -196,7 +196,8 @@
 \CloneTOCEntryStyle{subsection}{subsubsection}
 
 %%% Format configurations of entries.
-%%%% Source: https://tex.stackexchange.com/a/510236
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/510236
 \newcommand*{\dotlessentrynumberformatpart}[1]{\partname~\def\autodot{}#1}
 \DeclareTOCStyleEntry[
   entrynumberformat=\dotlessentrynumberformatpart,
@@ -271,7 +272,8 @@
 
 %% Section headings.
 %%% Format configurations.
-%%%% Source: https://tex.stackexchange.com/a/102305
+%%%% Source:
+%%%% https://tex.stackexchange.com/a/102305
 \colorlet{sectionheadingcolor}{hyperlinkcolor}
 \renewcommand*{\partformat}{\color{sectionheadingcolor}\large\partname~\thepart}
 

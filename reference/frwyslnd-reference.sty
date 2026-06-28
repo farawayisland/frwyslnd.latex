@@ -10,7 +10,7 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesPackage{frwyslnd-reference}[2026/06/20 The `reference` package of the
+\ProvidesPackage{frwyslnd-reference}[2026/06/29 The `reference` package of the
 `frwyslnd` bundle]
 
 % ENGINE
@@ -39,8 +39,9 @@
 \RequirePackage[all]{hypcap}
 
 % CONFIGURATIONS
-%% `hyperref`
-%%% Source: https://tex.stackexchange.com/a/150984
+%% `hyperref`.
+%%% Source:
+%%% https://tex.stackexchange.com/a/150984
 \hypersetup{
   colorlinks=true,
   filecolor=CustomBlue01,
@@ -53,7 +54,7 @@
 }
 \renewcommand*{\Hy@numberline}[1]{#1. }
 
-%% `bookmark`
+%% `bookmark`.
 \bookmarksetup{
   addtohook={%
     \ifnum\bookmarkget{level}<1%
