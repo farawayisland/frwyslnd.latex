@@ -1,4 +1,5 @@
 *.aux
+build/
 *.cut
 .DS_Store
 *.fdb_latexmk
