@@ -1,0 +1,81 @@
+% ──────────────────────────────────────────────────────────────────────────────
+% SPDX-FileCopyrightText: 2026 farawayisland
+% SPDX-License-Identifier: GPL-3.0-or-later
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://codeberg.org/farawayisland/frwyslnd.latex
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-math-analysis}[2026/06/29 The `analysis` module of the
+`math` package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-math-algebra`: The `algebra` module of the `math` package of the
+%% `frwyslnd` bundle.
+
+%% `derivative`: Nice and easy derivatives.
+
+% SINGLE-VARIABLE ANALYTIC NOTATION
+%% Ordinary derivative.
+%%% Custom `\dv` macro.
+\NewCommandCopy{\dv}{\odv}
+
+%% Ordinary differential.
+%%% Custom `\dd` macro.
+\NewCommandCopy{\dd}{\odif}
+
+%% Ordinary differential operator.
+%%% Custom `\dvop` macro.
+\NewDocumentCommand{\dvop}{s m}{
+  \IfBooleanTF{#1}{\dv{}/{#2}}{\dv{}{#2}}
+}
+
+% MULTIVARIABLE ANALYTIC NOTATION
+%% Boundary of a manifold.
+\newcommand*{\bndry}{\partial}
+
+%% Del operators.
+%%% Curl.
+\DeclareMathOperator{\curlop}{curl}
+\NewDocumentCommand{\curl}{s}{\IfBooleanTF{#1}{\curlop}{\del \cross}}
+
+%%% Del.
+\newcommand*{\del}{\mbfnabla}
+
+%%% Directional derivative.
+\NewDocumentCommand{\dirdv}{s m}{
+  \IfBooleanTF{#1}{D_{#2}}{{}\mspace{2mu}\del_{\mspace{-2mu}#2}}
+}
+
+%%% Divergence.
+\DeclareMathOperator{\divop}{div}
+\AtBeginDocument{
+  \RenewDocumentCommand{\div}{s}{\IfBooleanTF{#1}{\divop}{\del \cdot}}
+}
+
+%%% Gradient.
+\DeclareMathOperator{\gradop}{grad}
+\NewDocumentCommand{\grad}{s}{\IfBooleanTF{#1}{\gradop}{\del}}
+
+%% Partial differential.
+%%% Custom `\pdd` macro.
+\NewCommandCopy{\pdd}{\pdif}
+
+%% Partial differential operator.
+%%% Custom `\pdvop` macro.
+\NewDocumentCommand{\pdvop}{s m}{
+  \IfBooleanTF{#1}{\pdv{}/{#2}}{\pdv{}{#2}}
+}
+
+\endinput
