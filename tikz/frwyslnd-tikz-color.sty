@@ -1,0 +1,841 @@
+% ──────────────────────────────────────────────────────────────────────────────
+% SPDX-FileCopyrightText: 2026 farawayisland
+% SPDX-License-Identifier: GPL-3.0-or-later
+% ──────────────────────────────────────────────────────────────────────────────
+%
+% This file is part of the "`frwyslnd` bundle". The development version of
+% the bundle can be found at
+%
+%   https://codeberg.org/farawayisland/frwyslnd.latex
+%   https://github.com/farawayisland/frwyslnd.latex
+%
+% for those people who are interested.
+%
+% ──────────────────────────────────────────────────────────────────────────────
+\NeedsTeXFormat{LaTeX2e}[2026-06-01]
+\ProvidesPackage{frwyslnd-tikz-color}[2026/06/29 The `color` module of the
+`tikz` package of the `frwyslnd` bundle]
+
+% ENGINE
+%% The `frwyslnd` bundle strictly requires LuaTeX as the author does not intend
+%% to write checks for other TeX engines.
+
+% DEPENDENCIES
+%% `frwyslnd-math`: The `math` package of the `frwyslnd` bundle.
+
+% COLORED TEXT
+%% Custom \customtextcolor macro.
+%%% Source:
+%%% https://tex.stackexchange.com/a/400677
+\NewDocumentCommand{\customtextcolor}{s O{\normalsize} D<>{0.06ex} m m m}{%
+  \begin{tikzpicture}[anchor=base,baseline]%
+    \node[font=#2] at (0,0) {%
+      \IfBooleanTF{#1}{%
+        \textpdfrender{
+          FillColor=#5,
+          LineWidth=#3,
+          StrokeColor=#4,
+          TextRenderingMode=FillStrokeClip,
+        }{#6}%
+      }{%
+        \textpdfrender{
+          FillColor=#5,
+          LineWidth=#3,
+          MiterLimit=10,
+          StrokeColor=#4,
+          TextRenderingMode=FillStrokeClip,
+        }{#6}%
+      }
+    };
+  \end{tikzpicture}%
+}
+
+% COLOR SHOWCASES
+%% Custom \ShowcaseColor macro.
+\newcommand*{\ShowcaseColor}[1]{%
+  \fcolorbox{#1}{#1}{%
+    \customtextcolor[\Huge\ttfamily\bfseries]{black}{white}{#1}%
+  }%
+}
+
+%% Custom \ShowcaseColorblindSafeDivergingColorSchemes,
+%% \ShowcaseColorblindSafeQualitativeColorSchemes,
+%% and \ShowcaseColorblindSafeSequentialColorSchemes macros.
+%%% Sources:
+%%% https://mirrors.ctan.org/macros/latex/contrib/colorblind/colorblind_doc.pdf
+%%% https://tug.org/TUGboat/tb45-2/tb140pfahler-colorblind.pdf
+\newcommand*{\ShowcaseColorblindSafeDivergingColorSchemes}{%
+  \@ifclassloaded{standalone}{\begingroup\centering}{%
+  \begin{center}}
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{32}{102}{172}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-D-BR1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{67}{147}{195}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-D-BR2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{146}{197}{222}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-D-BR3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{209}{229}{240}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-D-BR4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{247}{247}{247}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-D-BR5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{253}{219}{199}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-D-BR6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{244}{165}{130}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-D-BR7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{214}{96}{77}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{T-D-BR8}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{9}{178}{24}{43}
+      \@frwyslnd@tikz@color@drawcolorandname{9}{T-D-BR9}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{10}{255}{238}{153}
+      \@frwyslnd@tikz@color@drawcolorandname{10}{T-D-BR0}
+    \end{tikzpicture}
+
+    \@frwyslnd@tikz@color@drawcolorbar{T-D-BR}
+
+    Paul \textbf{[T]}ol's \textbf{[D]}iverging \textbf{[B]}u\textbf{[R]}d \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{18}{90}{86}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-D-N1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{0}{118}{123}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-D-N2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{35}{143}{157}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-D-N3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{66}{167}{198}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-D-N4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{96}{188}{233}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-D-N5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{157}{204}{239}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-D-N6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{198}{219}{237}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-D-N7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{222}{230}{231}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{T-D-N8}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{9}{236}{234}{218}
+      \@frwyslnd@tikz@color@drawcolorandname{9}{T-D-N9}
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{240}{230}{178}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-D-N10}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{249}{213}{118}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-D-N11}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{255}{185}{84}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-D-N12}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{253}{154}{68}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-D-N13}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{245}{118}{52}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-D-N14}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{233}{76}{31}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-D-N15}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{209}{24}{7}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-D-N16}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{160}{24}{19}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{T-D-N17}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{9}{255}{255}{255}
+      \@frwyslnd@tikz@color@drawcolorandname{9}{T-D-N0}
+    \end{tikzpicture}
+
+    \@frwyslnd@tikz@color@drawcolorbar{T-D-N}
+
+    Paul \textbf{[T]}ol's \textbf{[D]}iverging \textbf{[N]}ightfall \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{118}{42}{131}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-D-PG1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{153}{112}{171}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-D-PG2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{194}{165}{207}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-D-PG3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{231}{212}{232}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-D-PG4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{247}{247}{247}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-D-PG5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{217}{240}{211}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-D-PG6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{172}{211}{158}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-D-PG7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{90}{174}{97}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{T-D-PG8}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{9}{27}{120}{55}
+      \@frwyslnd@tikz@color@drawcolorandname{9}{T-D-PG9}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{10}{255}{238}{153}
+      \@frwyslnd@tikz@color@drawcolorandname{10}{T-D-PG0}
+    \end{tikzpicture}
+
+    \@frwyslnd@tikz@color@drawcolorbar{T-D-PG}
+
+    Paul \textbf{[T]}ol's \textbf{[D]}iverging \textbf{[P]}R\textbf{[G]}n \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{54}{75}{154}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-D-S1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{74}{123}{183}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-D-S2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{110}{166}{205}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-D-S3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{152}{202}{225}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-D-S4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{194}{228}{239}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-D-S5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{234}{236}{204}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-D-S6}
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{254}{218}{139}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-D-S7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{253}{179}{102}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-D-S8}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{246}{126}{75}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-D-S9}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{221}{61}{45}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-D-S10}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{165}{0}{38}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-D-S11}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{255}{255}{255}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-D-S0}
+    \end{tikzpicture}
+
+    \@frwyslnd@tikz@color@drawcolorbar{T-D-S}
+
+    Paul \textbf{[T]}ol's \textbf{[D]}iverging \textbf{[S]}unset \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \@ifclassloaded{standalone}{\par\endgroup}{%
+  \end{center}}
+  \bigskip
+}
+
+\newcommand*{\ShowcaseColorblindSafeQualitativeColorSchemes}{%
+  \@ifclassloaded{standalone}{\begingroup\centering}{%
+  \begin{center}}
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{230}{159}{0}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{OI1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{86}{180}{233}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{OI2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{0}{158}{115}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{OI3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{240}{228}{66}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{OI4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{0}{114}{178}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{OI5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{213}{94}{0}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{OI6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{204}{121}{167}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{OI7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{0}{0}{0}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{OI0}
+    \end{tikzpicture}
+
+    \textbf{[O]}kabe–\textbf{[I]}to's qualitative color \\
+    scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{68}{119}{70}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-Q-B1}
+      \@frwyslnd@tikz@color@drawvarname{1}{blue}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{102}{204}{238}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-Q-B2}
+      \@frwyslnd@tikz@color@drawvarname{2}{cyan}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{34}{136}{51}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-Q-B3}
+      \@frwyslnd@tikz@color@drawvarname{3}{green}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{204}{187}{68}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-Q-B4}
+      \@frwyslnd@tikz@color@drawvarname{4}{yellow}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{238}{102}{119}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-Q-B5}
+      \@frwyslnd@tikz@color@drawvarname{5}{red}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{170}{51}{119}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-Q-B6}
+      \@frwyslnd@tikz@color@drawvarname{6}{violet}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{187}{187}{187}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-Q-B0}
+      \@frwyslnd@tikz@color@drawvarname{7}{gray}
+    \end{tikzpicture}
+
+    Paul \textbf{[T]}ol's \textbf{[Q]}ualitative \textbf{[B]}right color
+    scheme, \\
+    defined by \texttt{colorblind} to replace \texttt{xcolor}'s default colors.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{34}{34}{85}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-Q-DT1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{34}{85}{85}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-Q-DT2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{34}{85}{34}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-Q-DT3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{102}{102}{51}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-Q-DT4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{102}{51}{51}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-Q-DT5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{85}{85}{85}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-Q-DT0}
+    \end{tikzpicture}
+
+    Paul \textbf{[T]}ol's \textbf{[Q]}ualitative \textbf{[D]}ark
+    \textbf{[T]}ext \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{255}{255}{255}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-Q-HC1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{221}{170}{51}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-Q-HC2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{187}{85}{102}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-Q-HC3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{0}{68}{136}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-Q-HC4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{0}{0}{0}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-Q-HC0}
+    \end{tikzpicture}
+
+    Paul \textbf{[T]}ol's \textbf{[Q]}ualitative
+    \textbf{[H]}igh- \\
+    \textbf{[C]}ontrast color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{119}{170}{221}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-Q-L1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{153}{221}{255}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-Q-L2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{68}{187}{153}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-Q-L3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{187}{204}{51}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-Q-L4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{170}{170}{0}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-Q-L5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{238}{221}{136}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-Q-L6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{238}{136}{102}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-Q-L7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{255}{170}{187}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{T-Q-L8}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{9}{221}{221}{221}
+      \@frwyslnd@tikz@color@drawcolorandname{9}{T-Q-L0}
+    \end{tikzpicture}
+
+    Paul \textbf{[T]}ol's \textbf{[Q]}ualitative \textbf{[L]}ight \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{51}{34}{136}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-Q-M1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{136}{204}{238}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-Q-M2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{68}{170}{153}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-Q-M3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{17}{119}{51}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-Q-M4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{153}{153}{51}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-Q-M5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{221}{204}{119}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-Q-M6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{204}{102}{119}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-Q-M7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{136}{34}{85}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{T-Q-M8}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{9}{170}{68}{153}
+      \@frwyslnd@tikz@color@drawcolorandname{9}{T-Q-M9}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{10}{221}{221}{221}
+      \@frwyslnd@tikz@color@drawcolorandname{10}{T-Q-M0}
+    \end{tikzpicture}
+
+    Paul \textbf{[T]}ol's \textbf{[Q]}ualitative \textbf{[M]}uted \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{255}{255}{255}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-Q-MC1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{238}{204}{102}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-Q-MC2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{238}{153}{170}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-Q-MC3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{102}{153}{204}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-Q-MC4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{153}{119}{0}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-Q-MC5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{153}{68}{85}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-Q-MC6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{0}{68}{136}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-Q-MC7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{0}{0}{0}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{T-Q-MC0}
+    \end{tikzpicture}
+
+    Paul \textbf{[T]}ol's \textbf{[Q]}ualitative
+    \textbf{[M]}edium- \\
+    \textbf{[C]}ontrast color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{187}{204}{238}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-Q-PH1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{204}{238}{255}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-Q-PH2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{204}{221}{170}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-Q-PH3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{238}{238}{187}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-Q-PH4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{255}{204}{204}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-Q-PH5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{221}{221}{221}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-Q-PH0}
+    \end{tikzpicture}
+
+    Paul \textbf{[T]}ol's \textbf{[Q]}ualitative \textbf{[P]}ale \\
+    \textbf{[H]}ighlight color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{0}{119}{187}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-Q-V1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{51}{187}{238}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-Q-V2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{0}{153}{136}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-Q-V3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{238}{119}{51}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-Q-V4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{204}{51}{17}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-Q-V5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{238}{51}{119}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-Q-V6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{187}{187}{187}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-Q-V0}
+    \end{tikzpicture}
+
+    Paul \textbf{[T]}ol's \textbf{[Q]}ualitative \textbf{[V]}ibrant \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \@ifclassloaded{standalone}{\par\endgroup}{%
+  \end{center}}
+  \bigskip
+}
+
+\newcommand*{\ShowcaseColorblindSafeSequentialColorSchemes}{%
+  \@ifclassloaded{standalone}{\begingroup\centering}{%
+  \begin{center}}
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{209}{187}{215}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-S-DR1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{174}{118}{163}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-S-DR2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{136}{46}{114}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-S-DR3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{25}{101}{176}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-S-DR4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{82}{137}{199}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-S-DR5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{123}{175}{222}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-S-DR6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{78}{178}{101}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-S-DR7}
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{144}{201}{135}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-S-DR8}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{202}{224}{171}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-S-DR9}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{247}{240}{86}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-S-DR10}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{246}{193}{65}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-S-DR11}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{241}{147}{45}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-S-DR12}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{232}{96}{28}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-S-DR13}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{220}{5}{12}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-S-DR14}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{119}{119}{119}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{T-S-DR0}
+    \end{tikzpicture}
+
+    Paul \textbf{[T]}ol's \textbf{[S]}equential \textbf{[D]}iscrete \\
+    \textbf{[R]}ainbow color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{206}{255}{255}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-S-IN1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{198}{247}{214}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-S-IN2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{162}{244}{155}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-S-IN3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{187}{228}{83}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-S-IN4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{213}{206}{4}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-S-IN5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{231}{181}{3}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-S-IN6}
+    \end{tikzpicture}
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{241}{153}{3}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-S-IN7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{246}{121}{11}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-S-IN8}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{249}{73}{2}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-S-IN9}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{228}{5}{21}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-S-IN10}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{168}{0}{3}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-S-IN11}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{136}{136}{136}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-S-IN0}
+    \end{tikzpicture}
+
+    \@frwyslnd@tikz@color@drawcolorbar{T-S-IN}
+
+    Paul \textbf{[T]}ol's \textbf{[S]}equential \\
+    \textbf{[IN]}candescent color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \@frwyslnd@tikz@color@drawcolorbar{T-S-IR}
+
+    Paul \textbf{[T]}ol's \textbf{[S]}equential \textbf{[IR]}idescent \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \@frwyslnd@tikz@color@drawcolorbar{T-S-SR}
+
+    Paul \textbf{[T]}ol's \textbf{[S]}equential \textbf{[S]}mooth \\
+    \textbf{[R]}ainbow color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \begin{tikzpicture}[font=\ttfamily,line width=1.2pt,scale=1.25]
+      \@frwyslnd@tikz@color@drawrgbspecifiers
+
+      \@frwyslnd@tikz@color@drawrgbvalues{1}{255}{255}{229}
+      \@frwyslnd@tikz@color@drawcolorandname{1}{T-S-YOB1}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{2}{255}{247}{188}
+      \@frwyslnd@tikz@color@drawcolorandname{2}{T-S-YOB2}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{3}{254}{227}{145}
+      \@frwyslnd@tikz@color@drawcolorandname{3}{T-S-YOB3}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{4}{254}{196}{79}
+      \@frwyslnd@tikz@color@drawcolorandname{4}{T-S-YOB4}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{5}{251}{154}{41}
+      \@frwyslnd@tikz@color@drawcolorandname{5}{T-S-YOB5}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{6}{236}{112}{20}
+      \@frwyslnd@tikz@color@drawcolorandname{6}{T-S-YOB6}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{7}{204}{76}{2}
+      \@frwyslnd@tikz@color@drawcolorandname{7}{T-S-YOB7}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{8}{153}{52}{4}
+      \@frwyslnd@tikz@color@drawcolorandname{8}{T-S-YOB8}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{9}{102}{37}{6}
+      \@frwyslnd@tikz@color@drawcolorandname{9}{T-S-YOB9}
+
+      \@frwyslnd@tikz@color@drawrgbvalues{10}{136}{136}{136}
+      \@frwyslnd@tikz@color@drawcolorandname{10}{T-S-YOB0}
+    \end{tikzpicture}
+
+    \@frwyslnd@tikz@color@drawcolorbar{T-S-YOB}
+
+    Paul \textbf{[T]}ol's \textbf{[S]}equential
+    \textbf{[Y]}l\textbf{[O]}r\textbf{[B]}r \\
+    color scheme, defined by \texttt{colorblind}.
+    \bigskip
+
+    \@ifclassloaded{standalone}{\par\endgroup}{%
+  \end{center}}
+  \bigskip
+}
+
+\NewDocumentCommand{\@frwyslnd@tikz@color@drawcolorandname}{m m}{
+  \draw[fill=#2] (#1*1cm-1cm,0) circle (0.7cm);
+  \node[anchor=north east,rotate=25] at (#1*1cm-1cm,-1*0.8cm)
+  {#2};
+}
+
+\newcommand*{\@frwyslnd@tikz@color@drawcolorbar}[1]{%
+  \begin{tikzpicture}[line width=0.6pt,scale=1.25]
+    \pgfplotscolorbardrawstandalone[
+      colorbar horizontal,
+      colormap name=#1,
+      colorbar style={width=0.55\textwidth,ticks=none},
+    ]
+    \draw[fill=#10] (0.55\textwidth+0.7cm,-0.55cm) circle (0.5*0.7cm);
+  \end{tikzpicture}
+}
+
+\newcommand*{\@frwyslnd@tikz@color@drawrgbspecifiers}{
+  \node[fill=red,font=\ttfamily\bfseries,inner sep=3.5] at
+  (-1.2*0.7cm,2.3*0.8cm)
+  {\textwithwidth[c]{%
+      \textpdfrender{
+        FillColor=white,
+        LineWidth=0.06ex,
+        MiterLimit=10,
+        StrokeColor=black,
+        TextRenderingMode=FillStrokeClip,
+      }{R}%
+    }{G}
+  };
+  \node[fill=green,font=\ttfamily\bfseries,inner sep=3.5] at
+  (-1.2*0.7cm,1.8*0.8cm)
+  {\textwithwidth[c]{%
+      \textpdfrender{
+        FillColor=white,
+        LineWidth=0.06ex,
+        MiterLimit=10,
+        StrokeColor=black,
+        TextRenderingMode=FillStrokeClip,
+      }{G}%
+    }{G}
+  };
+  \node[fill=blue,font=\ttfamily\bfseries,inner sep=3.5] at
+  (-1.2*0.7cm,1.3*0.8cm)
+  {\textwithwidth[c]{%
+      \textpdfrender{
+        FillColor=white,
+        LineWidth=0.06ex,
+        MiterLimit=10,
+        StrokeColor=black,
+        TextRenderingMode=FillStrokeClip,
+      }{B}%
+    }{G}
+  };
+}
+
+\newcommand*{\@frwyslnd@tikz@color@drawrgbvalues}[4]{
+  \node at (#1*1cm-1cm,2.3*0.8cm) {#2};
+  \node at (#1*1cm-1cm,1.8*0.8cm) {#3};
+  \node at (#1*1cm-1cm,1.3*0.8cm) {#4};
+}
+
+\NewDocumentCommand{\@frwyslnd@tikz@color@drawvarname}{m m}{
+  \node[anchor=north east,rotate=25] at (#1*1cm-1.2cm,-1.7*0.8cm)
+  {(#2)};
+}
+
+%% Custom \ShowcaseCustomColors macro.
+\NewDocumentCommand{\ShowcaseCustomColors}{O{1em}}{
+  \@ifclassloaded{standalone}{\begingroup\centering}{%
+  \begin{center}}
+    \setlength{\fboxsep}{#1}
+    \ShowcaseColor{CustomBlue01}
+
+    \ShowcaseColor{CustomBlue02}
+
+    \ShowcaseColor{CustomGray01}
+
+    \ShowcaseColor{CustomGray02}
+
+    \ShowcaseColor{CustomGray03}
+
+    \ShowcaseColor{CustomGreen01}
+
+    \ShowcaseColor{CustomGreen02}
+
+    \ShowcaseColor{CustomGreen03}
+
+    \ShowcaseColor{CustomOrange01}
+
+    \ShowcaseColor{CustomPink01}
+
+    \ShowcaseColor{CustomPink02}
+
+    \ShowcaseColor{CustomPink03}
+
+    \ShowcaseColor{CustomPurple01}
+
+    \ShowcaseColor{CustomPurple02}
+
+    \ShowcaseColor{CustomPurple03}
+
+    \ShowcaseColor{CustomRed01}
+
+    \ShowcaseColor{CustomYellow01}
+    \bigskip
+
+    Custom colors defined by \texttt{frwyslnd-core}.
+    \@ifclassloaded{standalone}{\par\endgroup}{%
+  \end{center}}
+  \bigskip
+}
+
+\endinput
