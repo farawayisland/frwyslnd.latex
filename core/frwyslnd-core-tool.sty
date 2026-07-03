@@ -35,6 +35,15 @@ package of the `frwyslnd` bundle]
 %% `xpatch`: Extending `etoolbox` patching commands.
 \RequirePackage{xpatch}
 
+% ALIGNMENT MACROS
+%% Custom \mathwithwidth and \textwithwidth macros.
+%%% Source:
+%%% https://tex.stackexchange.com/a/212719
+\NewDocumentCommand{\mathwithwidth}{O{l} m m}{
+  \mathmakebox[\widthof{\(#3\)}][#1]{#2}
+}
+\NewDocumentCommand{\textwithwidth}{O{l} m m}{\makebox[\widthof{#3}][#1]{#2}}
+
 % SEARCH-AND-REPLACE MACROS
 %% Custom \replaceany and \replaceword macros.
 %%% Source:
