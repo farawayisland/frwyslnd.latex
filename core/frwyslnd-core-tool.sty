@@ -83,6 +83,39 @@ package of the `frwyslnd` bundle]
 }
 \ExplSyntaxOff
 
+% STRING-COMPARISON MACROS
+%% Custom \IfBlankXF, \IfBlankXTF, \IfBlankXT macros.
+%%% Source:
+%%% https://tex.stackexchange.com/a/737951
+\ExplSyntaxOn
+\NewExpandableDocumentCommand{\IfBlankXF}{mm}
+{
+  \tl_if_blank:eF { \text_expand:n {#1} } {#2}
+}
+\NewExpandableDocumentCommand{\IfBlankXT}{mm}
+{
+  \tl_if_blank:eT { \text_expand:n {#1} } {#2}
+}
+\NewExpandableDocumentCommand{\IfBlankXTF}{mmm}
+{
+  \tl_if_blank:eTF { \text_expand:n {#1} } {#2} {#3}
+}
+\ExplSyntaxOff
+
+%% Custom \IfStrEqualTF and \StrCase macros.
+%%% Source:
+%%% https://tex.stackexchange.com/a/451094
+\ExplSyntaxOn
+\NewExpandableDocumentCommand{\IfStrEqualTF}{m m m m}
+{
+  \str_if_eq:eeTF { #1 } { #2 } { #3 } { #4 }
+}
+\NewExpandableDocumentCommand{\StrCase}{m O{} m}
+{
+  \str_case_e:nnF { #1 } { #3 } { #2 }
+}
+\ExplSyntaxOff
+
 % LENGTH-RELATED MACROS
 %% Custom \definelength macro.
 %%% Source:
