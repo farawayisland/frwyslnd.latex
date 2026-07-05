@@ -152,6 +152,7 @@
   \definelength{titleboxseptitle}{2.25ex}
   \setlength{\tabcolsep}{\titleboxtabcolsep}
   \centering
+  \hspace*{\fill}
   \begin{NiceTabular}{c}[corners]
     \CodeBefore
     \TikzEveryCell{fill=titleboxcolorfill,offset=\titleboxoffset,rounded
@@ -161,12 +162,13 @@
       \\[\titleboxsepgeneral]
       \titleformat\@title \\[\titleboxseptitle]
       \authorformat\@author \\[\titleboxsepgeneral]
-      \href{\@webpage@url}{\usekomafont{author}{\texttt{\@webpage}}}
+      \href{\@webpage@url}{\usekomafont{author}{\@webpage}}
       \\[\titleboxsepgeneral]
       {\usekomafont{date}{\@date}} \\[\titleboxsepgeneral]
       {}
     }
   \end{NiceTabular}
+  \hspace*{\fill}
   \endgroup
   \bigskip
 }
@@ -182,13 +184,13 @@
 
 %% Table of contents.
 %% Structure.
-\renewcommand{\tableofcontents}{%
+\RenewDocumentCommand{\tableofcontents}{s}{%
   \pdfbookmark[-1]{\contentsname}{toc}
   \begingroup
   \let\if@dynlist\if@tocleft
   \expandafter\listoftoc\expandafter{\ext@toc}%
   \endgroup
-  \bigskip
+  \IfBooleanTF{#1}{\vspace*{\fill}}{}
 }
 
 %%% Indentation of entries.
@@ -237,12 +239,12 @@
 %%% Spacing of entries.
 \definelength{tocnumwidthpart}{3.75em}
 \definelength{tocnumwidthsection}{1.25em}
-\definelength{tocnumwidthsubsection}{\dimexpr\tocnumwidthsection+0.5\tocnumwidthsection\relax}
-\definelength{tocnumwidthsubsubsection}{\dimexpr\tocnumwidthsubsection+0.5\tocnumwidthsection\relax}
+\definelength{tocnumwidthsubsection}{\dimeval{\tocnumwidthsection+0.5\tocnumwidthsection}}
+\definelength{tocnumwidthsubsubsection}{\dimeval{\tocnumwidthsubsection+0.5\tocnumwidthsection}}
 \definelength{tocindentpart}{0em}
 \definelength{tocindentsection}{\tocindentpart}
-\definelength{tocindentsubsection}{\dimexpr\tocindentsection+\tocnumwidthsection\relax}
-\definelength{tocindentsubsubsection}{\dimexpr\tocindentsubsection+\tocnumwidthsubsection\relax}
+\definelength{tocindentsubsection}{\dimeval{\tocindentsection+\tocnumwidthsection}}
+\definelength{tocindentsubsubsection}{\dimeval{\tocindentsubsection+\tocnumwidthsubsection}}
 \definelength{tocsepabove}{1ex}
 
 \CloneTOCEntryStyle{subsection}{subsubsection}
@@ -290,21 +292,30 @@
 \setkomafont{subparagraph}{\color{sectionheadingcolor}\normalsize}
 
 %%% Spacing.
-\definelength{sectionheadingsepabove}{-0.875ex plus -0.25ex minus -0.05ex}
-\definelength{sectionheadingsepbelow}{0.575ex plus 0.05ex}
+\definelength{nonpartsectionheadingsepabove}{
+  -0.875ex plus -0.25ex minus -0.05ex
+}
+\definelength{nonpartsectionheadingsepbelow}{0.575ex plus 0.05ex}
+\definelength{partheadingsepabove}{1.15ex plus 0.1ex}
+\definelength{partheadingsepbelow}{\nonpartsectionheadingsepbelow}
+\RedeclareSectionCommand[
+  afterskip=\partheadingsepbelow,
+  beforeskip=\partheadingsepabove,
+]{part}
 \RedeclareSectionCommands[
-  afterskip=\sectionheadingsepbelow,
-  beforeskip=\sectionheadingsepabove,
-]{paragraph,part,section,subparagraph,subsection,subsubsection}
-
-%% Section contents.
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0pt plus 0.5ex}
+  afterskip=\nonpartsectionheadingsepbelow,
+  beforeskip=\nonpartsectionheadingsepabove,
+]{paragraph,section,subparagraph,subsection,subsubsection}
 
 %% Document structure.
 \AfterEndPreamble{%
-\begin{multicols}{\@frwyslnd@cheatsheet@columns}\raggedright}
+\begin{multicols}{\@frwyslnd@cheatsheet@columns}\RaggedRight}
   \AtEndDocument{%
 \end{multicols}}
+
+%% Section contents.
+%%% Spacing.
+\definelength{defaultparindent}{\parindent}
+\AfterEndPreamble{\setlength{\parindent}{\defaultparindent}}
 
 \endinput
