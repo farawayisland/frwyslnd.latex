@@ -31,14 +31,15 @@
 %% Custom \rbullet macro.
 %%% Source:
 %%% https://tex.stackexchange.com/a/389240
-\newcommand*{\rbullet}[1][0.5]{\mathbin{\ThisStyle{\vcenter{\hbox{%
+\NewDocumentCommand{\rbullet}{O{0.5}}{%
+      \mathbin{\ThisStyle{\vcenter{\hbox{%
       \scalebox{#1}{$\SavedStyle\bullet$}}}}}%
 }
 
 %% Custom \rtextbullet macro.
 %%% Source:
 %%% https://tex.stackexchange.com/a/730865
-\newcommand*{\rtextbullet}[1][0.7]{\scaletextbullet{#1}}
+\NewDocumentCommand{\rtextbullet}{O{0.7}}{\scaletextbullet{#1}}
 
 % DELIMITER MACROS
 %% Custom \DeclareSpacedPairedDelimiter macro.
@@ -103,8 +104,8 @@
 %% Custom \squarebullet macro.
 %%% Source:
 %%% https://tex.stackexchange.com/a/487742
-\newlength\vcenterht
-\newlength\halfht
+\newlength{\halfht}
+\newlength{\vcenterht}
 \newcommand*{\squarebullet}{\mathbin{\ThisStyle{%
                   \setbox0=\hbox{$\SavedStyle\bullet$}%
                   \setbox2=\hbox{$\SavedStyle()$}%
@@ -130,6 +131,8 @@ $\SavedStyle\squarebullet$\cr\textcolor{red}{$\SavedStyle\bullet$}}}}
 %% Custom \trimmedoverline macro.
 %%% Source:
 %%% https://tex.stackexchange.com/a/95084
-\newcommand*{\trimmedoverline}[2][3mu]{{}\mspace{#1}\overline{\mspace{-#1}#2}}
+\NewDocumentCommand{\trimmedoverline}{O{3mu} m}{%
+      {}\mspace{#1}\overline{\mspace{-#1}#2}
+}
 
 \endinput
