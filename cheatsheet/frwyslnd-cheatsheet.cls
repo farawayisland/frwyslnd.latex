@@ -33,6 +33,37 @@
 
 % OPTIONS
 %% Declarations.
+%%% `colorscheme`=<string>.
+\ExplSyntaxOn
+\newcommand*{\@frwyslnd@cheatsheet@colorscheme}{purple}
+
+\NewDocumentCommand{\@process@frwyslnd@cheatsheet@colorscheme}{m}{
+  \str_case:nnTF { #1 }
+  {
+    {pink}{}
+    {purple}{}
+  }
+  {
+    \renewcommand*{\@frwyslnd@cheatsheet@colorscheme}{#1}
+  }
+  {
+    \msg_error:nnn { frwyslnd-cheatsheet } { colorscheme~bad~value } { #1 }
+  }
+}
+
+\msg_new:nnnn { frwyslnd-cheatsheet } { colorscheme~bad~value }
+{ Bad~`colorscheme`~option~value:~`#1` }
+{
+  You~can~only~use~`pink`~or~`purple,~you~used~`#1`
+}
+\ExplSyntaxOff
+
+\DeclareKeys[frwyslnd-cheatsheet]{
+  colorscheme.code  =
+  \@process@frwyslnd@cheatsheet@colorscheme{#1},
+  colorscheme.usage = load,
+}
+
 %%% `columns`=<positive_integer>.
 \newcommand*{\@frwyslnd@cheatsheet@columns}{4}
 \DeclareKeys[frwyslnd-cheatsheet]{
@@ -41,8 +72,12 @@
 }
 
 %% Processing.
-\PassOptionsToClass{\@frwyslnd@cheatsheet@baseclass@options}{\@frwyslnd@cheatsheet@baseclass}
-\DeclareUnknownKeyHandler{\PassOptionsToClass{\CurrentOption}{\@frwyslnd@cheatsheet@baseclass}}
+\PassOptionsToClass{\@frwyslnd@cheatsheet@baseclass@options}{
+  \@frwyslnd@cheatsheet@baseclass
+}
+\DeclareUnknownKeyHandler{
+  \PassOptionsToClass{\CurrentOption}{\@frwyslnd@cheatsheet@baseclass}
+}
 \ProcessKeyOptions
 
 % DEPENDENCIES
@@ -59,6 +94,21 @@
 \RequirePackage{multicol}
 
 % CONFIGURATIONS
+%% Color schemes.
+\colorlet{hyperlinkcolor}{%
+  \StrCase{\@frwyslnd@cheatsheet@colorscheme}{%
+    {pink}{CustomPink01}%
+    {purple}{CustomPurple01}%
+  }%
+}
+\colorlet{sectionheadingcolor}{hyperlinkcolor}
+\colorlet{titleboxcolorfill}{%
+  \StrCase{\@frwyslnd@cheatsheet@colorscheme}{%
+    {pink}{CustomPink04}%
+    {purple}{CustomPurple06}%
+  }%
+}
+
 %% `geometry`.
 \geometry{
   bottom=1cm,
@@ -70,7 +120,6 @@
 }
 
 %% `hyperref`
-\colorlet{hyperlinkcolor}{CustomPink01}
 \AtEndPreamble{
   \hypersetup{
     filecolor=hyperlinkcolor,
@@ -98,8 +147,7 @@
 
 %% Title box.
 %%% Format configurations.
-%%%% Colors and lengths.
-\colorlet{titleboxcolorfill}{CustomPink03}
+%%%% Lengths.
 \definelength{titleboxoffset}{3pt}
 \definelength{titleboxroundedcorners}{5pt}
 \definelength{titleboxtabcolsep}{2em}
@@ -239,12 +287,20 @@
 %%% Spacing of entries.
 \definelength{tocnumwidthpart}{3.75em}
 \definelength{tocnumwidthsection}{1.25em}
-\definelength{tocnumwidthsubsection}{\dimeval{\tocnumwidthsection+0.5\tocnumwidthsection}}
-\definelength{tocnumwidthsubsubsection}{\dimeval{\tocnumwidthsubsection+0.5\tocnumwidthsection}}
+\definelength{tocnumwidthsubsection}{
+  \dimeval{\tocnumwidthsection+0.5\tocnumwidthsection}
+}
+\definelength{tocnumwidthsubsubsection}{
+  \dimeval{\tocnumwidthsubsection+0.5\tocnumwidthsection}
+}
 \definelength{tocindentpart}{0em}
 \definelength{tocindentsection}{\tocindentpart}
-\definelength{tocindentsubsection}{\dimeval{\tocindentsection+\tocnumwidthsection}}
-\definelength{tocindentsubsubsection}{\dimeval{\tocindentsubsection+\tocnumwidthsubsection}}
+\definelength{tocindentsubsection}{
+  \dimeval{\tocindentsection+\tocnumwidthsection}
+}
+\definelength{tocindentsubsubsection}{
+  \dimeval{\tocindentsubsection+\tocnumwidthsubsection}
+}
 \definelength{tocsepabove}{1ex}
 
 \CloneTOCEntryStyle{subsection}{subsubsection}
@@ -279,7 +335,6 @@
 %%% Format configurations.
 %%%% Source:
 %%%% https://tex.stackexchange.com/a/102305
-\colorlet{sectionheadingcolor}{hyperlinkcolor}
 \renewcommand*{\partformat}{\color{sectionheadingcolor}\large\partname~\thepart}
 
 %%% Font configurations.
