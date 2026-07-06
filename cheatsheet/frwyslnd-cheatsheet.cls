@@ -13,7 +13,7 @@
 %
 % ──────────────────────────────────────────────────────────────────────────────
 \NeedsTeXFormat{LaTeX2e}[2026-06-01]
-\ProvidesClass{frwyslnd-cheatsheet}[2026/06/29 The `cheatsheet` class of the
+\ProvidesClass{frwyslnd-cheatsheet}[2026/07/06 The `cheatsheet` class of the
 `frwyslnd` bundle]
 
 % ENGINE
