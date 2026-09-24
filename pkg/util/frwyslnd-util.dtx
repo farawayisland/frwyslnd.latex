@@ -1,0 +1,144 @@
+% \iffalse meta-comment
+% !TEX program = lualatex
+% ──────────────────────────────────────────────────────────────────────────────
+% SPDX-FileCopyrightText: 2026 farawayisland
+% SPDX-License-Identifier: GPL-3.0-or-later
+% ──────────────────────────────────────────────────────────────────────────────
+% File: frwyslnd-util.dtx
+% ──────────────────────────────────────────────────────────────────────────────
+%<*internal>
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+\expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip
+\keepsilent
+\askforoverwritefalse
+\def\preambleindentation{%
+  \space\space\space\space\space\space\space\space%
+  \space\space\space\space\space\space\space\space%
+  \space\space\space\space\space\space\space\space%
+  \space\space\space\space\space\space\space%
+}
+\preamble
+───────────────────────────────────────────────────────────────────────────────
+SPDX-FileCopyrightText: 2026 farawayisland
+SPDX-License-Identifier: GPL-3.0-or-later
+───────────────────────────────────────────────────────────────────────────────^^J\DoubleperCent
+%
+This file is part of the "`frwyslnd` bundle". The development version of
+the bundle can be found at
+%
+https://codeberg.org/farawayisland/frwyslnd.latex
+https://github.com/farawayisland/frwyslnd.latex
+%
+for those people who are interested.^^J\DoubleperCent
+%
+───────────────────────────────────────────────────────────────────────────────^^J\DoubleperCent
+%
+This work consists of the file  frwyslnd-util.dtx
+and the derived files           frwyslnd-util.ins,
+\preambleindentation frwyslnd-util.pdf, and
+\preambleindentation frwyslnd-util.sty.^^J\DoubleperCent
+%
+───────────────────────────────────────────────────────────────────────────────
+\endpreamble
+\nopostamble
+\usedir{tex/latex/frwyslnd}
+\generate{
+  \file{\jobname.sty}{\from{pkg/util/\jobname.dtx}{package}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/frwyslnd}
+\generate{
+  \file{\jobname.ins}{\from{pkg/util/\jobname.dtx}{install}}
+}
+\ifx\fmtname\nameofplainTeX
+\expandafter\endbatchfile
+\else
+\expandafter\endgroup
+\fi
+%</internal>
+%<*package>
+% % PACKAGE METADATA.
+% %% Bundle.
+\def\BundleName{frwyslnd}
+
+% %% Package.
+\def\PackageDescription{%
+  \PackageFileDate\space\PackageVersion\space%
+  The `\PackageSuffix` package of the `\BundleName` bundle%
+}
+\def\PackageFileDate{2026-09-28}
+\def\PackageSuffix{util}
+\def\PackageVersion{v0.1.0}
+
+% %% TeX format.
+\def\TeXFormatFileDate{2026-06-01}
+
+\NeedsTeXFormat{LaTeX2e}[\TeXFormatFileDate]
+\ProvidesPackage{frwyslnd-util}[\PackageDescription]
+
+%</package>
+%<*driver>
+% % DOCUMENT CLASS.
+\documentclass{ltxdoc}
+
+% % PACKAGES.
+\usepackage[numbered]{hypdoc}
+\usepackage{\jobname}
+
+% % CONFIGURATIONS.
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+
+% % DOCUMENT.
+\begin{document}
+\DocInput{pkg/util/\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+%\GetFileInfo{\jobname.sty}
+%
+%\title{^^A
+%  \texttt{frwyslnd-util}\thanks{^^A
+%    This file describes version \fileversion, last revised \filedate.^^A
+%  }^^A
+%}
+%\author{^^A
+%  Frances\thanks{\texttt{https://github.com/farawayisland}}^^A
+%}
+%\date{Released \filedate}
+% ^^A % START OF USER DOCUMENTATION.
+%\maketitle
+%
+%\changes{v0.1.0}{2026-09-28}{First public release}
+%
+%\StopEventually{^^A
+%}
+% ^^A % END OF USER PART OF DOCUMENTATION.
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% ^^A % ENGINE.
+% ^^A %% The `frwyslnd` bundle strictly requires LuaTeX as the author does not
+% ^^A %% intend to write checks for other TeX engines.
+%\section{Engine}
+%
+%The \texttt{frwyslnd} bundle strictly requires Lua\TeX{} as the author does not
+%intend to write checks for other \TeX{} engines.
+%    \begin{macrocode}
+\RequirePackage{iftex}
+\RequireLuaTeX
+%    \end{macrocode}
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%\Finale
