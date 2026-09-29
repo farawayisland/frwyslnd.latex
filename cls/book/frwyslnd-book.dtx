@@ -1,0 +1,227 @@
+% \iffalse meta-comment
+% !TEX program = lualatex
+% ──────────────────────────────────────────────────────────────────────────────
+% SPDX-FileCopyrightText: 2026 farawayisland
+% SPDX-License-Identifier: GPL-3.0-or-later
+% ──────────────────────────────────────────────────────────────────────────────
+% File: frwyslnd-book.dtx
+% ──────────────────────────────────────────────────────────────────────────────
+%<*internal>
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+\expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip
+\keepsilent
+\askforoverwritefalse
+\def\preambleindentation{%
+  \space\space\space\space\space\space\space\space%
+  \space\space\space\space\space\space\space\space%
+  \space\space\space\space\space\space\space\space%
+  \space\space\space\space\space\space%
+}
+\preamble
+───────────────────────────────────────────────────────────────────────────────
+SPDX-FileCopyrightText: 2026 farawayisland
+SPDX-License-Identifier: GPL-3.0-or-later
+───────────────────────────────────────────────────────────────────────────────^^J\DoubleperCent
+%
+This file is part of the "`frwyslnd` bundle". The development version of
+the bundle can be found at
+%
+https://codeberg.org/farawayisland/frwyslnd.latex
+https://github.com/farawayisland/frwyslnd.latex
+%
+for those people who are interested.^^J\DoubleperCent
+%
+───────────────────────────────────────────────────────────────────────────────^^J\DoubleperCent
+%
+This work consists of the file frwyslnd-book.dtx
+\preambleindentation and the derived files
+\preambleindentation frwyslnd-book.ins,
+\preambleindentation frwyslnd-book.cls, and
+\preambleindentation frwyslnd-book.pdf.^^J\DoubleperCent
+%
+───────────────────────────────────────────────────────────────────────────────
+\endpreamble
+\nopostamble
+\usedir{tex/latex/frwyslnd}
+\generate{
+  \file{\jobname.cls}{\from{cls/book/\jobname.dtx}{class}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/frwyslnd}
+\generate{
+  \file{\jobname.ins}{\from{cls/book/\jobname.dtx}{install}}
+}
+\ifx\fmtname\nameofplainTeX
+\expandafter\endbatchfile
+\else
+\expandafter\endgroup
+\fi
+%</internal>
+%<*driver>
+% % DOCUMENT METADATA.
+\RequirePackage{pdfmanagement}
+\SetKeys[document/metadata]{
+  lang=en,
+  pdfstandard=a-4e,
+  pdfversion=2.0,
+}
+
+% % DOCUMENT CLASS.
+\documentclass{ltxdoc}
+
+% % PACKAGES.
+\usepackage{frwyslnd-util}
+\usepackage[numbered]{hypdoc}
+
+% % CONFIGURATIONS.
+% %% Counters.
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+% %% References.
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+
+% % DOCUMENT.
+\begin{document}
+\DocInput{cls/book/\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+%\def\filedate{2026-10-06}
+%\def\fileversion{v0.1.0}
+%
+%\title{^^A
+%  \texttt{frwyslnd-book}\thanks{^^A
+%    This file describes version \fileversion, last revised \filedate.^^A
+%  }^^A
+%}
+%\author{^^A
+%  Frances\thanks{\texttt{https://github.com/farawayisland}}^^A
+%}
+%\date{Released \filedate}
+% ^^A % USER PART OF DOCUMENTATION.
+%\maketitle
+%
+%\changes{v0.1.0}{2026-10-06}{First public release}
+%
+%\tableofcontents
+%
+%\StopEventually{^^A
+%}
+% ^^A % SECTION 1. IMPLEMENTATION.
+%\section{Implementation}
+%    \begin{macrocode}
+%<*class>
+%    \end{macrocode}
+%
+% ^^A %% Subsection 1.1. Class metadata and declaration.
+%\subsection{Class metadata and declaration}
+%    \begin{macrocode}
+\def\BundleName{frwyslnd}
+
+\def\ClassDescription{%
+  \ClassFileDate\space\ClassVersion\space%
+  The `\ClassSuffix` class of the `\BundleName` bundle%
+}
+\def\ClassFileDate{2026-10-06}
+\def\ClassSuffix{book}
+\def\ClassVersion{v0.1.0}
+
+\def\TeXFormatFileDate{2026-06-01}
+
+\NeedsTeXFormat{LaTeX2e}[\TeXFormatFileDate]
+\ProvidesClass{frwyslnd-book}[\ClassDescription]
+%    \end{macrocode}
+%
+% ^^A %% Subsection 1.2. Base class.
+%\subsection{Base class}
+%    \begin{macrocode}
+\ExplSyntaxOn
+\newcommand*{\__frwy_book_basecls}{scrbook}
+\newcommand*{\__frwy_book_opts}{
+  12pt,
+  BCOR=0mm,
+  DIV=10,
+  headings=optiontoheadandtoc,
+  headings=standardclasses,
+  headings=onelinechapter,
+  numbers=noendperiod,
+  twoside=semi,
+}
+\ExplSyntaxOff
+%    \end{macrocode}
+%
+% ^^A %% Subsection 1.3. Class options.
+%\subsection{Class options}
+%
+% ^^A %% Subsection 1.3.1 Declarations.
+%\subsubsection{Declarations}
+%
+% ^^A %% Subsection 1.3.2 Processing.
+%\subsubsection{Processing}
+%    \begin{macrocode}
+\ExplSyntaxOn
+\PassOptionsToClass{\__frwy_book_opts}{%
+  \__frwy_book_basecls%
+}
+\DeclareUnknownKeyHandler{
+  \PassOptionsToClass{\CurrentOption}{\__frwy_book_basecls}
+}
+\ProcessKeyOptions
+\ExplSyntaxOff
+%    \end{macrocode}
+%
+% ^^A %% Subsection 1.4. Dependencies.
+%\subsection{Dependencies}
+%
+% ^^A %%% Subsubsection 1.4.1. `scrbook`.
+%\subsubsection{\texttt{scrbook}: \hologo{KOMAScript} book class}
+%    \begin{macrocode}
+\ExplSyntaxOn
+\LoadClass{\__frwy_book_basecls}
+\ExplSyntaxOff
+%    \end{macrocode}
+%
+% ^^A %%% Subsubsection 1.4.2. `frwyslnd-util`.
+%\subsubsection{^^A
+%  \texttt{frwyslnd-util}: The \texttt{util} package of the \texttt{frwyslnd}
+%  bundle^^A
+%}
+%    \begin{macrocode}
+\RequirePackage{frwyslnd-util}
+%    \end{macrocode}
+%
+% ^^A %%% Subsubsection 1.4.3. `scrlayer-scrpage`.
+%\subsubsection{\texttt{scrlayer-scrpage}: Define and manage page styles}
+%    \begin{macrocode}
+\RequirePackage{scrlayer-scrpage}
+%    \end{macrocode}
+%
+% ^^A %% Subsection 1.5. Dependency configurations.
+%\subsection{Dependency configurations}
+%
+% ^^A %%% Subsubsection 1.5.1. `KOMA-Script`.
+%\subsubsection{\hologo{KOMAScript}}
+%    \begin{macrocode}
+\KOMAoptions{
+  headinclude,
+  headsepline=0.8pt,
+}
+\AtBeginDocument{\recalctypearea}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%</class>
+%    \end{macrocode}
+%% ──────────────────────────────────────────────────────────────────────────────
+%\Finale
