@@ -1,0 +1,181 @@
+% \iffalse meta-comment
+% !TEX program = lualatex
+% ──────────────────────────────────────────────────────────────────────────────
+% SPDX-FileCopyrightText: 2026 farawayisland
+% SPDX-License-Identifier: GPL-3.0-or-later
+% ──────────────────────────────────────────────────────────────────────────────
+% File: frwyslnd-filler.dtx
+% ──────────────────────────────────────────────────────────────────────────────
+%<*internal>
+\def\nameofplainTeX{plain}
+\ifx\fmtname\nameofplainTeX\else
+\expandafter\begingroup
+\fi
+%</internal>
+%<*install>
+\input docstrip
+\keepsilent
+\askforoverwritefalse
+\def\preambleindentation{%
+  \space\space\space\space\space\space\space\space%
+  \space\space\space\space\space\space\space\space%
+  \space\space\space\space\space\space\space\space%
+  \space\space\space\space\space\space%
+}
+\preamble
+───────────────────────────────────────────────────────────────────────────────
+SPDX-FileCopyrightText: 2026 farawayisland
+SPDX-License-Identifier: GPL-3.0-or-later
+───────────────────────────────────────────────────────────────────────────────^^J\DoubleperCent
+%
+This file is part of the "`frwyslnd` bundle". The development version of
+the bundle can be found at
+%
+https://codeberg.org/farawayisland/frwyslnd.latex
+https://github.com/farawayisland/frwyslnd.latex
+%
+for those people who are interested.^^J\DoubleperCent
+%
+───────────────────────────────────────────────────────────────────────────────^^J\DoubleperCent
+%
+This work consists of the file frwyslnd-filler.dtx
+\preambleindentation and the derived files
+\preambleindentation frwyslnd-filler.ins,
+\preambleindentation frwyslnd-filler.pdf, and
+\preambleindentation frwyslnd-filler.sty.^^J\DoubleperCent
+%
+───────────────────────────────────────────────────────────────────────────────
+\endpreamble
+\nopostamble
+\usedir{tex/latex/frwyslnd}
+\generate{
+  \file{\jobname.sty}{\from{pkg/filler/\jobname.dtx}{package}}
+}
+%</install>
+%<install>\endbatchfile
+%<*internal>
+\usedir{source/latex/frwyslnd}
+\generate{
+  \file{\jobname.ins}{\from{pkg/filler/\jobname.dtx}{install}}
+}
+\ifx\fmtname\nameofplainTeX
+\expandafter\endbatchfile
+\else
+\expandafter\endgroup
+\fi
+%</internal>
+%<*driver>
+% % DOCUMENT METADATA.
+\RequirePackage{pdfmanagement}
+\SetKeys[document/metadata]{
+  lang=en,
+  pdfstandard=a-4e,
+  pdfversion=2.0,
+}
+
+% % DOCUMENT CLASS.
+\documentclass{ltxdoc}
+
+% % PACKAGES.
+\usepackage{\jobname}
+\usepackage[numbered]{hypdoc}
+
+% % CONFIGURATIONS.
+% %% Counters.
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+% %% References.
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+
+% % DOCUMENT.
+\begin{document}
+\DocInput{pkg/filler/\jobname.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+%\GetFileInfo{\jobname.sty}
+%
+%\title{^^A
+%  \texttt{frwyslnd-filler}\thanks{^^A
+%    This file describes version \fileversion, last revised \filedate.^^A
+%  }^^A
+%}
+%\author{^^A
+%  Frances\thanks{\texttt{https://github.com/farawayisland}}^^A
+%}
+%\date{Released \filedate}
+% ^^A % USER PART OF DOCUMENTATION.
+%\maketitle
+%
+%\changes{v0.1.0}{2026-10-06}{First public release}
+%
+%\tableofcontents
+%
+%\StopEventually{^^A
+%}
+% ^^A % SECTION 1. IMPLEMENTATION.
+%\section{Implementation}
+%    \begin{macrocode}
+%<*package>
+%    \end{macrocode}
+%
+% ^^A %% Subsection 1.1. Package metadata and declaration.
+%\subsection{Package metadata and declaration}
+%    \begin{macrocode}
+\def\BundleName{frwyslnd}
+
+\def\PackageDescription{%
+  \PackageFileDate\space\PackageVersion\space%
+  The `\PackageSuffix` package of the `\BundleName` bundle%
+}
+\def\PackageFileDate{2026-10-06}
+\def\PackageSuffix{filler}
+\def\PackageVersion{v0.1.0}
+
+\def\TeXFormatFileDate{2026-06-01}
+
+\NeedsTeXFormat{LaTeX2e}[\TeXFormatFileDate]
+\ProvidesPackage{frwyslnd-filler}[\PackageDescription]
+%    \end{macrocode}
+%
+% ^^A %% Subsection 1.2. Dependencies.
+%\subsection{Dependencies}
+%
+% ^^A %%% Subsubsection 1.2.1. `blindtext`.
+%\subsubsection{\texttt{blindtext}: Producing ``blind'' text for testing}
+%    \begin{macrocode}
+\RequirePackage[math]{blindtext}
+%    \end{macrocode}
+%
+% ^^A %%% Subsubsection 1.2.2. `frwyslnd-util`.
+%\subsubsection{^^A
+%  \texttt{frwyslnd-util}: The \texttt{util} package of the \texttt{frwyslnd}
+%  bundle^^A
+%}
+%    \begin{macrocode}
+\RequirePackage{frwyslnd-util}
+%    \end{macrocode}
+%
+% ^^A %%% Subsubsection 1.2.3. `kantlipsum`.
+%\subsubsection{\texttt{kantlipsum}: Generate sentences in Kant's style}
+%    \begin{macrocode}
+\RequirePackage{kantlipsum}
+%    \end{macrocode}
+%
+% ^^A %%% Subsubsection 1.2.4. `lipsum`.
+%\subsubsection{^^A
+%  \texttt{lipsum}: Easy access to the Lorem Ipsum and other dummy texts^^A
+%}
+%    \begin{macrocode}
+\RequirePackage{lipsum}
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%</package>
+%    \end{macrocode}
+%% ──────────────────────────────────────────────────────────────────────────────
+%\Finale
